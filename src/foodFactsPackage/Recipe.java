@@ -56,7 +56,7 @@ public class Recipe
     }
     /**
      * removes the items using the same index from each ArrayList
-     * @param indx 
+     * @param indx I'm thinking the index should be the number next to each line item in the recipe.
      */
     public void removeIngredient(int indx)
     {
@@ -67,7 +67,17 @@ public class Recipe
     
     public void calcNutrition()
     {
-        //Iterate through the Ingredient List 
+        //Iterate through the Recipe's Ingredient List 
+        for(int i = 0; i < ingredients.size()-1&& i<quantities.size()-1&& i<units.size(); i++)
+        {
+            //calculate and store the ratio for each ingredient
+            //the unit the recipe calls for
+            units.get(i).g
+                //(the measure from the enum, 
+            ingredients.get(i).getBase();
+            //what unit the recipe calls for and the amount of the unt)
+                // call all the get methods for each of the nutritional values & multiply the ration add to recipe's cal
+        }   
     }
             
 }
