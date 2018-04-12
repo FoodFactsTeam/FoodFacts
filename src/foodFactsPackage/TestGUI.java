@@ -13,7 +13,6 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Dimension;
-import net.miginfocom.swing.MigLayout;
 import java.awt.Rectangle;
 import javax.swing.border.BevelBorder;
 
