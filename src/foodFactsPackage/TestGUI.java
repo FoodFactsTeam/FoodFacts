@@ -16,34 +16,67 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import javax.swing.border.BevelBorder;
 
+import foodFactsPackage.ListDemo.FireListener;
+import foodFactsPackage.ListDemo.HireListener;
+
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.JList;
+import javax.swing.AbstractListModel;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
+import javax.swing.ListSelectionModel;
+import java.awt.GridLayout;
+import javax.swing.JComboBox;
+
 public class TestGUI extends JFrame{
 	public TestGUI() {
-		
-		JPanel panel = new JPanel();
-		getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
-		
-		JLabel lblFoodFacts = new JLabel("Food Facts");
-		lblFoodFacts.setFont(new Font("SansSerif", Font.BOLD, 64));
-		lblFoodFacts.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFoodFacts.setBounds(204, 115, 446, 112);
-		panel.add(lblFoodFacts);
-		
-		JLabel lblNutritional = new JLabel("Nutritional Information and Recipe Collection");
-		lblNutritional.setFont(new Font("Times New Roman", Font.ITALIC, 32));
-		lblNutritional.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNutritional.setBounds(124, 264, 603, 65);
-		panel.add(lblNutritional);
-		
-		JButton btnNewButton = new JButton("ADD RECIPE");
-		btnNewButton.setFont(new Font("Perpetua", Font.BOLD, 20));
-		btnNewButton.setBounds(112, 376, 295, 135);
-		panel.add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("OPEN RECIPE COLLECTION");
-		btnNewButton_1.setFont(new Font("Perpetua", Font.BOLD, 20));
-		btnNewButton_1.setBounds(463, 376, 305, 135);
-		panel.add(btnNewButton_1);
+		DefaultListModel listModel = new DefaultListModel();
+        listModel.addElement("Jane Doe");
+        listModel.addElement("John Smith");
+        listModel.addElement("Kathy Green");
+ 
+        //Create the list and put it in a scroll pane.
+        JList list = new JList(listModel);
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        list.setSelectedIndex(0);
+        //list.addListSelectionListener(this);
+        list.setVisibleRowCount(5);
+        JScrollPane listScrollPane = new JScrollPane(list);
+ 
+        JButton hireButton = new JButton("hire");
+        //HireListener hireListener = new HireListener(hireButton);
+       // hireButton.setActionCommand(");
+       // hireButton.addActionListener(hireListener);
+        hireButton.setEnabled(false);
+ 
+        JButton fireButton = new JButton("fire");
+        //fireButton.setActionCommand(fireString);
+        //fireButton.addActionListener(new FireListener());
+ 
+        JTextField employeeName = new JTextField(10);
+        //employeeName.addActionListener(hireListener);
+        //employeeName.getDocument().addDocumentListener(hireListener);
+        String name = listModel.getElementAt(
+                              list.getSelectedIndex()).toString();
+ 
+        //Create a panel that uses BoxLayout.
+        JPanel buttonPane = new JPanel();
+        buttonPane.setLayout(new BoxLayout(buttonPane,
+                                           BoxLayout.LINE_AXIS));
+        buttonPane.add(fireButton);
+        buttonPane.add(Box.createHorizontalStrut(5));
+        buttonPane.add(new JSeparator(SwingConstants.VERTICAL));
+        buttonPane.add(Box.createHorizontalStrut(5));
+        buttonPane.add(employeeName);
+        buttonPane.add(hireButton);
+        buttonPane.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+ 
+        add(listScrollPane, BorderLayout.CENTER);
+        add(buttonPane, BorderLayout.PAGE_END);
 	}
 	
 	public static void main(String[] args){

@@ -20,8 +20,26 @@ public class FoodFactsGUI {
 	JButton addRecipe;
 	JButton openRecipeBook;
 	
+	//member variables for Ingredients Frame
+	JFrame ingredientFrame;
+	JPanel ingredientPanel;
+	
 	FoodFactsGUI(){
-		createOpeningFrame();
+		//createOpeningFrame();
+		createIngredientFrame();
+	}
+	
+	public void createIngredientFrame(){
+		int[] frameSize = {1400,900};
+		ingredientFrame = new JFrame();
+		
+		ingredientFrame.setSize(frameSize[0], frameSize[1]);
+		ingredientPanel = new JPanel();
+		ingredientPanel.setLayout(new BorderLayout());
+		ingredientFrame.add(ingredientPanel);
+		
+		ingredientFrame.setVisible(true);
+		ingredientFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	public void createOpeningFrame(){
