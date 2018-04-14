@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package a09.team.assignment;
+package foodFactsPackage;
+
 
 import java.util.ArrayList;
 
-/**
- *
+/** *
  * @author deliapathak
  */
 public class Recipe 
@@ -70,13 +70,23 @@ public class Recipe
         //Iterate through the Recipe's Ingredient List 
         for(int i = 0; i < ingredients.size()-1&& i<quantities.size()-1&& i<units.size(); i++)
         {
+            int ratio;
             //calculate and store the ratio for each ingredient
-            //the unit the recipe calls for
-            units.get(i).g
-                //(the measure from the enum, 
-            ingredients.get(i).getBase();
-            //what unit the recipe calls for and the amount of the unt)
+            //the unit the recipe calls for     //(the measure from the enum, 
+            if (units.get(i) == "cup")           
+                ratio = ingredients.get(i).getBase().getCupRatio();
+            if (units.get(i) == "tablespoon");
+                ratio = ingredients.get(i).getBase().getTablespoonRatio();
+            if (units.get(i) == "teaspoon");
+                ratio = ingredients.get(i).getBase().getTeaspoonRatio();    
+            //the amount of the unt)
+            ratio = ratio * quantities.get(i);
                 // call all the get methods for each of the nutritional values & multiply the ration add to recipe's cal
+            totalCalories = ingredients.get(i).getCalorie() *ratio;
+            totalFat = ingredients.get(i).getFat() *ratio;
+            totalFiber = ingredients.get(i).getFiber() *ratio;
+            totalCarbs = ingredients.get(i).getCarbs() *ratio;
+            totalProtein = ingredients.get(i).getProtein() *ratio;
         }   
     }
             
