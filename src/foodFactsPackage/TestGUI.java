@@ -13,38 +13,42 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Dimension;
-import net.miginfocom.swing.MigLayout;
 import java.awt.Rectangle;
 import javax.swing.border.BevelBorder;
 
+import foodFactsPackage.ListDemo.FireListener;
+import foodFactsPackage.ListDemo.HireListener;
+
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.JList;
+import javax.swing.AbstractListModel;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
+import javax.swing.ListSelectionModel;
+import java.awt.GridLayout;
+import javax.swing.JComboBox;
+import javax.swing.JMenu;
+import javax.swing.JPopupMenu;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JMenuItem;
+
 public class TestGUI extends JFrame{
 	public TestGUI() {
+		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
-		
-		JLabel lblFoodFacts = new JLabel("Food Facts");
-		lblFoodFacts.setFont(new Font("SansSerif", Font.BOLD, 64));
-		lblFoodFacts.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFoodFacts.setBounds(204, 115, 446, 112);
-		panel.add(lblFoodFacts);
-		
-		JLabel lblNutritional = new JLabel("Nutritional Information and Recipe Collection");
-		lblNutritional.setFont(new Font("Times New Roman", Font.ITALIC, 32));
-		lblNutritional.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNutritional.setBounds(124, 264, 603, 65);
-		panel.add(lblNutritional);
-		
-		JButton btnNewButton = new JButton("ADD RECIPE");
-		btnNewButton.setFont(new Font("Perpetua", Font.BOLD, 20));
-		btnNewButton.setBounds(112, 376, 295, 135);
-		panel.add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("OPEN RECIPE COLLECTION");
-		btnNewButton_1.setFont(new Font("Perpetua", Font.BOLD, 20));
-		btnNewButton_1.setBounds(463, 376, 305, 135);
-		panel.add(btnNewButton_1);
+		panel.setBounds(0, 0, 1082, 10);
+		getContentPane().add(panel);
+		DefaultListModel listModel = new DefaultListModel();
+        listModel.addElement("Jane Doe");
+        listModel.addElement("John Smith");
+        listModel.addElement("Kathy Green");
 	}
 	
 	public static void main(String[] args){
@@ -53,5 +57,22 @@ public class TestGUI extends JFrame{
 		tg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		tg.setSize(1000,600);
 		tg.setResizable(false);
+	}
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
 	}
 }

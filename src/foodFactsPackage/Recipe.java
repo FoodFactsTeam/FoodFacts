@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package foodFactsPackage;
+/*<<<<<<< HEAD
 
+=======
+>>>>>>> bdb1834ae9ced58340af8eb33d37893d80e1a698*/
 
 import java.util.ArrayList;
 
