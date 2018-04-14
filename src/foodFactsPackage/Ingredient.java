@@ -3,7 +3,7 @@
  * information. There is a Nutrition Information getter! to get all the nutrition 
  * info at once.
  */
-package a09.team.assignment;
+package foodFactsPackage;
 
 /**
  * The ingredient class

@@ -31,52 +31,24 @@ import javax.swing.DefaultListModel;
 import javax.swing.ListSelectionModel;
 import java.awt.GridLayout;
 import javax.swing.JComboBox;
+import javax.swing.JMenu;
+import javax.swing.JPopupMenu;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JMenuItem;
 
 public class TestGUI extends JFrame{
 	public TestGUI() {
+		getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 1082, 10);
+		getContentPane().add(panel);
 		DefaultListModel listModel = new DefaultListModel();
         listModel.addElement("Jane Doe");
         listModel.addElement("John Smith");
         listModel.addElement("Kathy Green");
- 
-        //Create the list and put it in a scroll pane.
-        JList list = new JList(listModel);
-        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        list.setSelectedIndex(0);
-        //list.addListSelectionListener(this);
-        list.setVisibleRowCount(5);
-        JScrollPane listScrollPane = new JScrollPane(list);
- 
-        JButton hireButton = new JButton("hire");
-        //HireListener hireListener = new HireListener(hireButton);
-       // hireButton.setActionCommand(");
-       // hireButton.addActionListener(hireListener);
-        hireButton.setEnabled(false);
- 
-        JButton fireButton = new JButton("fire");
-        //fireButton.setActionCommand(fireString);
-        //fireButton.addActionListener(new FireListener());
- 
-        JTextField employeeName = new JTextField(10);
-        //employeeName.addActionListener(hireListener);
-        //employeeName.getDocument().addDocumentListener(hireListener);
-        String name = listModel.getElementAt(
-                              list.getSelectedIndex()).toString();
- 
-        //Create a panel that uses BoxLayout.
-        JPanel buttonPane = new JPanel();
-        buttonPane.setLayout(new BoxLayout(buttonPane,
-                                           BoxLayout.LINE_AXIS));
-        buttonPane.add(fireButton);
-        buttonPane.add(Box.createHorizontalStrut(5));
-        buttonPane.add(new JSeparator(SwingConstants.VERTICAL));
-        buttonPane.add(Box.createHorizontalStrut(5));
-        buttonPane.add(employeeName);
-        buttonPane.add(hireButton);
-        buttonPane.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
- 
-        add(listScrollPane, BorderLayout.CENTER);
-        add(buttonPane, BorderLayout.PAGE_END);
 	}
 	
 	public static void main(String[] args){
@@ -85,5 +57,22 @@ public class TestGUI extends JFrame{
 		tg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		tg.setSize(1000,600);
 		tg.setResizable(false);
+	}
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
 	}
 }

@@ -2,7 +2,7 @@
  * A09 Team Assignment FoodFacts!!!
  * This is the Measure Enum
  */
-package a09.team.assignment;
+package foodFactsPackage;
 
 /**
  * These enums represent a measurement and contain the ratios needed to 
