@@ -16,22 +16,22 @@ public class Ingredient
      * this is the Measure used to calculate nutrition information
      */
     Measure base;
-    int calorie;
-    int fat;
-    int carbs;
-    int fiber;
-    int protein;
+    double calorie;
+    double fat;
+    double carbs;
+    double fiber;
+    double protein;
     /**
      * Creates an Ingredient 
      * @param nm name as a String
      * @param bs base Measure
-     * @param cal calories in int
-     * @param ft fat as an int
-     * @param crb carbohydrates as an int
-     * @param fbr fiber as an int
-     * @param prtn protein as an int 
+     * @param cal calories in double
+     * @param ft fat as an double
+     * @param crb carbohydrates as an double
+     * @param fbr fiber as an double
+     * @param prtn protein as an double 
      */
-    Ingredient(String nm, Measure bs, int cal, int ft, int crb, int fbr, int prtn)
+    public Ingredient(String nm, Measure bs, double cal, double ft, double crb, double fbr, double prtn)
     {
         name = nm;
         base = bs;
@@ -80,13 +80,13 @@ public class Ingredient
      * get the calories per baseMeasurement in the ingredient
      * @return Measure
      */
-    public int getCalorie()
+    public double getCalorie()
     {
         return calorie;
     }
     /**
      * set the amount of calories per the base measurement 
-     * @param cal as an int
+     * @param cal as an double
      */
     public void setCalorie(int cal)
     {
@@ -97,24 +97,24 @@ public class Ingredient
      * get the fat content per base measurement
      * @return Measure
      */
-    public int getFat()
+    public double getFat()
     {
         return fat;
     }
     /**
      * set the fat content based on measure used
-     * @param ft fat as an int
+     * @param ft fat as an double
      */
-    public void setFat(int ft)
+    public void setFat(double ft)
     {
         fat = ft;   
     }
     
     /**
      * get carb content per base measurement
-     * @return an int fat
+     * @return an double fat
      */
-    public int getCarbs()
+    public double getCarbs()
     {
         return carbs;
     }
@@ -122,7 +122,7 @@ public class Ingredient
      * set the integer value of carbs per base measurement
      * @param crb carbs as integer
      */
-    public void setCarbs(int crb)
+    public void setCarbs(double crb)
     {
         carbs = crb;
     }
@@ -131,7 +131,7 @@ public class Ingredient
      * set the amount of fiber per base measurement
      * @param fbr 
      */
-    public void setFiber(int fbr)
+    public void setFiber(double fbr)
     {
         fiber = fbr;
     }
@@ -139,7 +139,7 @@ public class Ingredient
      * get the amount of fiber contained in base measurement
      * @return int fiber
      */
-    public int getFiber()
+    public double getFiber()
     {
         return fiber;
     }
@@ -148,11 +148,11 @@ public class Ingredient
      * get the amount of protein per base measurement
      * @return integer value protein
      */
-    public int getProtein()
+    public double getProtein()
     {
         return protein;
     }
-    public void setProtein(int prt)
+    public void setProtein(double prt)
     {
         protein = prt;
     }

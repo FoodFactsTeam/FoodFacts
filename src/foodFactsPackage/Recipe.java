@@ -4,10 +4,7 @@
  * and open the template in the editor.
  */
 package foodFactsPackage;
-/*<<<<<<< HEAD
 
-=======
->>>>>>> bdb1834ae9ced58340af8eb33d37893d80e1a698*/
 
 import java.util.ArrayList;
 
@@ -18,15 +15,15 @@ public class Recipe
 {
     String title;
     ArrayList <Ingredient> ingredients = new ArrayList<>();
-    ArrayList <Integer> quantities = new ArrayList<>();
+    ArrayList <Double> quantities = new ArrayList<>();
     ArrayList <String> units = new ArrayList<>();
     ArrayList <String> instructions = new ArrayList<>();
-    int totalFiber;
-    int totalFat;
-    int totalCarbs;
-    int totalProtein;
-    int totalCalories;
-    int index;
+    double totalFiber;
+    double totalFat;
+    double totalCarbs;
+    double totalProtein;
+    double totalCalories;
+    double index;
     
     /**
      * get the title of the recipe
@@ -51,7 +48,7 @@ public class Recipe
      * @param quant type integer
      * @param unt type string (cup, tablespoon, teaspoon)
      */
-    public void addIngredient(Ingredient ingr, Integer quant, String unt)
+    public void addIngredient(Ingredient ingr, Double quant, String unt)
     {
         ingredients.add(ingr);
         quantities.add(quant);
@@ -73,7 +70,7 @@ public class Recipe
         //Iterate through the Recipe's Ingredient List 
         for(int i = 0; i < ingredients.size()-1&& i<quantities.size()-1&& i<units.size(); i++)
         {
-            int ratio;
+            double ratio;
             //calculate and store the ratio for each ingredient
             //the unit the recipe calls for     //(the measure from the enum, 
             if (units.get(i) == "cup")           
