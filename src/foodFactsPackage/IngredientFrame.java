@@ -27,12 +27,13 @@ public class IngredientFrame {
 	DefaultListModel<String> model;
 	JList<String> list;
 	JScrollPane scrollPane;
-	JButton addBtn,removeBtn,editBtn;
+	JButton addBtn,removeBtn,createRecipeBtn;
 	JLabel nameLabel,measurementLabel,caloriesLabel,fatLabel,carbohydratesLabel,fiberLabel,proteinLabel;
 	JTextField nameField,caloriesField,fatField,carbohydratesField,fiberField,proteinField;
 	Font labelFont,fieldFont;
 	DefaultComboBoxModel<Measure> cModel;
 	JComboBox<Measure> measurementBox;
+	Recipe userRecipe;
 	
 	IngredientFrame(){
 		//create list to hold existing ingredients
@@ -54,8 +55,6 @@ public class IngredientFrame {
         btnPanel.setBackground(new Color(210,180,140));
         addBtn = new JButton("ADD");
         btnPanel.add(addBtn);
-        editBtn = new JButton("EDIT");
-        btnPanel.add(editBtn);
         removeBtn = new JButton("REMOVE");
         btnPanel.add(removeBtn);
         listPanel.add(btnPanel,BorderLayout.SOUTH);
@@ -136,15 +135,10 @@ public class IngredientFrame {
         fieldPanel.add(proteinField);
         fieldPanel.add(Box.createRigidArea(new Dimension(0,100)));
 
-
-        openRecipeBook.setActionCommand("open");
-        openRecipeBook.addActionListener(new ButtonClickListener());
         //Set action commands and add listeners to buttons
         addBtn.setActionCommand("addIngredient");
-        editBtn.setActionCommand("editIngredient");
         removeBtn.setActionCommand("removeIngredient");
         addBtn.addActionListener(new IngredientListener());
-        editBtn.addActionListener(new IngredientListener());
         removeBtn.addActionListener(new IngredientListener());
         
         //add components to JPanel
@@ -166,11 +160,14 @@ public class IngredientFrame {
         frame.setSize(1400, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+
+        userRecipe = new Recipe();
 	}
 
     private class IngredientListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             String command = e.getActionCommand();
+            Ingredient ing;
             if (command.equals("addIngredient")) {
                 String name = nameField.getText();
                 double calorie = Double.parseDouble(caloriesField.getText());
@@ -178,10 +175,15 @@ public class IngredientFrame {
                 double carbs = Double.parseDouble(carbohydratesField.getText());
                 double fiber = Double.parseDouble(fiberField.getText());
                 double protein = Double.parseDouble(proteinField.getText());
-            } else if (command.equals("editIngredient")) {
 
+                ing = new Ingredient(name, null, calorie, fat, carbs, fiber, protein);
+
+                userRecipe.addIngredient(ing, 1, "cup");
+                model.addElement(name);
             } else if (command.equals("removeIngredient")) {
-
+                int ind = list.getSelectedIndex();
+                userRecipe.removeIngredient(ind);
+                model.removeElementAt(ind);
             }
         }
     }
