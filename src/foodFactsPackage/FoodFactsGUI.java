@@ -42,7 +42,7 @@ public class FoodFactsGUI {
 		ingredientPanel.setLayout(new BorderLayout());
 		ingredientFrame.add(ingredientPanel);
 
-		ingredientFrame.setVisible(true);
+		ingredientFrame.setVisible(false);
 		ingredientFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
