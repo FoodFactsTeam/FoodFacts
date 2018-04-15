@@ -22,6 +22,5 @@ public class DemoFH implements Serializable{
 		//deserialize the same DemoFH object
 		DemoFH d3 = (DemoFH)fh.readObjectFromFile("test.ser");
 		System.out.printf("Deserialized object d3: a = %d, b = %s \n", d3.a,d3.b);
-		
 	}
 }

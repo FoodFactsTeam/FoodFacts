@@ -3,6 +3,10 @@ package foodFactsPackage;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -25,20 +29,20 @@ public class FoodFactsGUI {
 	JPanel ingredientPanel;
 	
 	FoodFactsGUI(){
-		//createOpeningFrame();
+		createOpeningFrame();
 		createIngredientFrame();
 	}
 	
 	public void createIngredientFrame(){
 		int[] frameSize = {1400,900};
 		ingredientFrame = new JFrame();
-		
+
 		ingredientFrame.setSize(frameSize[0], frameSize[1]);
 		ingredientPanel = new JPanel();
 		ingredientPanel.setLayout(new BorderLayout());
 		ingredientFrame.add(ingredientPanel);
-		
-		ingredientFrame.setVisible(true);
+
+		ingredientFrame.setVisible(false);
 		ingredientFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
@@ -74,12 +78,16 @@ public class FoodFactsGUI {
 		addRecipe.setVerticalAlignment(JLabel.CENTER);
 		int arX = (frameSize[0]-2*btnLabelSize[0])*1/4;
 		addRecipe.setBounds(150, 350, btnLabelSize[0], btnLabelSize[1]);
+		addRecipe.setActionCommand("add");
+		addRecipe.addActionListener(new ButtonClickListener());
 		
 		openRecipeBook = new JButton("OPEN RECIPE COLLECTION");
 		openRecipeBook.setFont(new Font("Perpetua", Font.BOLD, 20));
 		openRecipeBook.setHorizontalAlignment(JLabel.CENTER);
 		openRecipeBook.setVerticalAlignment(JLabel.CENTER);
 		openRecipeBook.setBounds(550, 350, btnLabelSize[0], btnLabelSize[1]);
+		openRecipeBook.setActionCommand("open");
+		openRecipeBook.addActionListener(new ButtonClickListener());
 		
 		openingPanel.add(title);
 		openingPanel.add(subTitle);
@@ -92,6 +100,21 @@ public class FoodFactsGUI {
 		openingFrame.setVisible(true);
 		//instead of default exit on close, set serialize ingredients and recipes when closing
 		openingFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	List<Ingredient> ingredientStore = new ArrayList<>();
+
+	private class ButtonClickListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			String command = e.getActionCommand();
+			if (command.equals("add")) {
+				openingFrame.setVisible(false);
+				ingredientFrame.setVisible(true);
+			} else if (command.equals("open")) {
+				openingFrame.setVisible(false);
+				ingredientFrame.setVisible(true);
+			}
+		}
 	}
 	
 	public static void main(String[] args){

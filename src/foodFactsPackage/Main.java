@@ -54,7 +54,5 @@ public class Main {
                 System.out.println(applePie.units.get(1));
                 
                 applePie.removeIngredient(2);
-                
-                
     }
 }
