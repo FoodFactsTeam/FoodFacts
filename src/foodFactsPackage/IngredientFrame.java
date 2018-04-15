@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
@@ -133,8 +135,17 @@ public class IngredientFrame {
         proteinField.setFont(fieldFont);
         fieldPanel.add(proteinField);
         fieldPanel.add(Box.createRigidArea(new Dimension(0,100)));
-        
-        
+
+
+        openRecipeBook.setActionCommand("open");
+        openRecipeBook.addActionListener(new ButtonClickListener());
+        //Set action commands and add listeners to buttons
+        addBtn.setActionCommand("addIngredient");
+        editBtn.setActionCommand("editIngredient");
+        removeBtn.setActionCommand("removeIngredient");
+        addBtn.addActionListener(new IngredientListener());
+        editBtn.addActionListener(new IngredientListener());
+        removeBtn.addActionListener(new IngredientListener());
         
         //add components to JPanel
         mainPanel = new JPanel();
@@ -155,8 +166,25 @@ public class IngredientFrame {
         frame.setSize(1400, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        
 	}
+
+    private class IngredientListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            String command = e.getActionCommand();
+            if (command.equals("addIngredient")) {
+                String name = nameField.getText();
+                double calorie = Double.parseDouble(caloriesField.getText());
+                double fat = Double.parseDouble(fatField.getText());
+                double carbs = Double.parseDouble(carbohydratesField.getText());
+                double fiber = Double.parseDouble(fiberField.getText());
+                double protein = Double.parseDouble(proteinField.getText());
+            } else if (command.equals("editIngredient")) {
+
+            } else if (command.equals("removeIngredient")) {
+
+            }
+        }
+    }
 	
 	public static void main(String[] args){
 		IngredientFrame ingF = new IngredientFrame();

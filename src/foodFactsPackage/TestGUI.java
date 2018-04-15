@@ -16,8 +16,8 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import javax.swing.border.BevelBorder;
 
-import foodFactsPackage.ListDemo.FireListener;
-import foodFactsPackage.ListDemo.HireListener;
+//import foodFactsPackage.ListDemo.FireListener;
+//import foodFactsPackage.ListDemo.HireListener;
 
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
