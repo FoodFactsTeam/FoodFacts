@@ -23,13 +23,13 @@ public class Ingredient
     double protein;
     /**
      * Creates an Ingredient 
-     * @param nm name as a String
-     * @param bs base Measure
-     * @param cal calories in double
-     * @param ft fat as an double
-     * @param crb carbohydrates as an double
-     * @param fbr fiber as an double
-     * @param prtn protein as an double 
+     * @param nm name of ingredient as a String
+     * @param bs base Measurement used for nutritional information
+     * @param cal calories per base measurement
+     * @param ft fat per base measurement
+     * @param crb carbohydrates per base Measurement
+     * @param fbr fiber per base measurement
+     * @param prtn protein per base measurement
      */
     public Ingredient(String nm, Measure bs, double cal, double ft, double crb, double fbr, double prtn)
     {
@@ -103,7 +103,7 @@ public class Ingredient
     }
     /**
      * set the fat content based on measure used
-     * @param ft fat as an double
+     * @param ft fat in grams per base measurement
      */
     public void setFat(double ft)
     {
@@ -112,7 +112,7 @@ public class Ingredient
     
     /**
      * get carb content per base measurement
-     * @return an double fat
+     * @return carbs per base measurement
      */
     public double getCarbs()
     {
@@ -137,7 +137,7 @@ public class Ingredient
     }
     /**
      * get the amount of fiber contained in base measurement
-     * @return int fiber
+     * @return fiber in grams per Base measurement
      */
     public double getFiber()
     {
@@ -152,6 +152,10 @@ public class Ingredient
     {
         return protein;
     }
+    /**
+     * This allows the protein information to be updated
+     * @param prt grams per the base measurement used.
+     */
     public void setProtein(double prt)
     {
         protein = prt;

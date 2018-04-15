@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * This is the recipe class. It holds all the ingredients and the amounts needed
+ * It also calculates and holds the nutritional content for the entire recipe.
  */
 package foodFactsPackage;
 
@@ -27,7 +26,7 @@ public class Recipe
     
     /**
      * get the title of the recipe
-     * @return String
+     * @return String Title of the recipe
      */
     public String getTitle()
     {
@@ -44,11 +43,11 @@ public class Recipe
     
     /**
      * This will add an element of the recipe(the ingredient, quantity and measurement)
-     * @param ingr type Ingredient
-     * @param quant type integer
-     * @param unt type string (cup, tablespoon, teaspoon)
+     * @param ingr an Ingredient object with nutritional information
+     * @param quant double relating to amount of ingredient called for
+     * @param unt measurement unit used in the recipe
      */
-    public void addIngredient(Ingredient ingr, Double quant, String unt)
+    public void addIngredient(Ingredient ingr, double quant, String unt)
     {
         ingredients.add(ingr);
         quantities.add(quant);
@@ -68,25 +67,25 @@ public class Recipe
     public void calcNutrition()
     {
         //Iterate through the Recipe's Ingredient List 
-        for(int i = 0; i < ingredients.size()-1&& i<quantities.size()-1&& i<units.size(); i++)
+        for(int i = 0; i < ingredients.size()&& i<quantities.size()&& i<units.size(); i++)
         {
-            double ratio;
-            //calculate and store the ratio for each ingredient
-            //the unit the recipe calls for     //(the measure from the enum, 
-            if (units.get(i) == "cup")           
+            double ratio=1;
+            //use the unit called for in the recipe to get the correct ratio out of each baseMeasure
+            if (units.get(i).equals("cup"))  
                 ratio = ingredients.get(i).getBase().getCupRatio();
-            if (units.get(i) == "tablespoon");
+            if (units.get(i).equals("tablespoon"))
                 ratio = ingredients.get(i).getBase().getTablespoonRatio();
-            if (units.get(i) == "teaspoon");
+            if (units.get(i).equals("teaspoon"))
                 ratio = ingredients.get(i).getBase().getTeaspoonRatio();    
-            //the amount of the unt)
+            //the amount of the unit used in the recipe
             ratio = ratio * quantities.get(i);
-                // call all the get methods for each of the nutritional values & multiply the ration add to recipe's cal
-            totalCalories = ingredients.get(i).getCalorie() *ratio;
-            totalFat = ingredients.get(i).getFat() *ratio;
-            totalFiber = ingredients.get(i).getFiber() *ratio;
-            totalCarbs = ingredients.get(i).getCarbs() *ratio;
-            totalProtein = ingredients.get(i).getProtein() *ratio;
+                // call all the get methods for each of the nutritional values 
+                //& multiply the ratio and add to recipe's total count
+            totalCalories += ingredients.get(i).getCalorie() *ratio;  
+            totalFat += ingredients.get(i).getFat() *ratio;
+            totalFiber += ingredients.get(i).getFiber() *ratio;
+            totalCarbs += ingredients.get(i).getCarbs() *ratio;
+            totalProtein += ingredients.get(i).getProtein() *ratio;
         }   
     }
             
