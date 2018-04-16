@@ -40,11 +40,9 @@ import javax.swing.JMenuItem;
 
 public class TestGUI extends JFrame{
 	public TestGUI() {
-		getContentPane().setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 1082, 10);
-		getContentPane().add(panel);
+		JScrollPane scrollPane = new JScrollPane();
+		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		DefaultListModel listModel = new DefaultListModel();
         listModel.addElement("Jane Doe");
         listModel.addElement("John Smith");
