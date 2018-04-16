@@ -39,15 +39,21 @@ public class IngredientFrame {
 		//create list to hold existing ingredients
 		model = new DefaultListModel<String>();
 		list = new JList<String>(model);
-		list.setVisibleRowCount(10);
+		list.setVisibleRowCount(25);
 		list.setFixedCellHeight(20);
-		list.setFixedCellWidth(140);
+		list.setFixedCellWidth(300);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         scrollPane = new JScrollPane(list);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        listPanel = new JPanel(new BorderLayout());
-        listPanel.add(scrollPane,BorderLayout.CENTER);
+        listPanel = new JPanel();
+        listPanel.setBackground(new Color(210,180,140));
+        listPanel.setLayout(new BoxLayout(listPanel,BoxLayout.Y_AXIS));
+        listPanel.add(Box.createRigidArea(new Dimension(0,50)));
+        listPanel.add(scrollPane);
+        listPanel.add(Box.createRigidArea(new Dimension(0,50)));
+        //listPanel = new JPanel(new BorderLayout());
+        //listPanel.add(scrollPane,BorderLayout.CENTER);
         
         //create JPanel to hold buttons that go below list of ingredients
         btnPanel = new JPanel();
