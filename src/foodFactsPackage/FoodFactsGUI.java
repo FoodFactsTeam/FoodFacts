@@ -8,10 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class FoodFactsGUI {
 	//member variables for opening frame
@@ -23,7 +20,7 @@ public class FoodFactsGUI {
 	Font subTitleFont;
 	JButton addRecipe;
 	JButton openRecipeBook;
-	
+
 	//member variables for Ingredients Frame
 	JFrame ingredientFrame;
 	JPanel ingredientPanel;
@@ -88,7 +85,8 @@ public class FoodFactsGUI {
 		openRecipeBook.setBounds(550, 350, btnLabelSize[0], btnLabelSize[1]);
 		openRecipeBook.setActionCommand("open");
 		openRecipeBook.addActionListener(new ButtonClickListener());
-		
+
+
 		openingPanel.add(title);
 		openingPanel.add(subTitle);
 		openingPanel.add(addRecipe);
