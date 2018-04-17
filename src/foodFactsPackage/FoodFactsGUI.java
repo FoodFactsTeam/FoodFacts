@@ -100,6 +100,7 @@ public class FoodFactsGUI {
 		openingFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
+        //I didn't add this, but this looks like it would the ingredient library.
 	List<Ingredient> ingredientStore = new ArrayList<>();
 
 	private class ButtonClickListener implements ActionListener {
@@ -114,8 +115,6 @@ public class FoodFactsGUI {
 			}
 		}
 	}
+ 
 	
-	public static void main(String[] args){
-		FoodFactsGUI gui = new FoodFactsGUI();
-	}
 }

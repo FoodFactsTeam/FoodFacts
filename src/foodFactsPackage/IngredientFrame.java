@@ -220,6 +220,6 @@ public class IngredientFrame {
             }
 	
 	public static void main(String[] args){
-		IngredientFrame ingF = new IngredientFrame();
+		//IngredientFrame ingF = new IngredientFrame();
 	}
 }
