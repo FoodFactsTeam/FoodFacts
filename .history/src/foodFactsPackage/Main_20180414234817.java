@@ -1,9 +1,6 @@
 package foodFactsPackage;
 
 
-import javax.swing.*;
-import java.awt.*;
-
 public class Main {
 
     public static void main(String[] args) 
@@ -57,10 +54,7 @@ public class Main {
                 System.out.println(applePie.units.get(1));
                 
                 applePie.removeIngredient(2);
+                
+                
     }
 }
-//RECIPE INPUT CLASS
-//
-
-//RECIPE DISPLAY CLASS
-//To string method for Recipe class should could display entire string

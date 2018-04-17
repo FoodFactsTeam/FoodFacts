@@ -86,7 +86,7 @@ public class Recipe
             totalFiber += ingredients.get(i).getFiber() *ratio;
             totalCarbs += ingredients.get(i).getCarbs() *ratio;
             totalProtein += ingredients.get(i).getProtein() *ratio;
-        }   
+        }
     }
-            
+
 }
