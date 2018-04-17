@@ -6,49 +6,44 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
-import javax.swing.ScrollPaneConstants;
+import javax.swing.*;
 
 public class IngredientFrame {
 	JFrame frame;
-	JPanel listPanel,btnPanel,mainPanel,labelPanel,fieldPanel;
+	JPanel listPanel,btnPanel,mainPanel,labelPanel,fieldPanel, headerPanel;
 	DefaultListModel<String> model;
 	JList<String> list;
 	JScrollPane scrollPane;
-	JButton addBtn,removeBtn,createRecipeBtn;
+	JButton addBtn,removeBtn,homeBtn;
 	JLabel nameLabel,measurementLabel,caloriesLabel,fatLabel,carbohydratesLabel,fiberLabel,proteinLabel;
 	JTextField nameField,caloriesField,fatField,carbohydratesField,fiberField,proteinField;
 	Font labelFont,fieldFont;
+        
 	DefaultComboBoxModel<Measure> cModel;
 	JComboBox<Measure> measurementBox;
+        Measure bsMsr;
+        
 	Recipe userRecipe;
-	
+
+        
 	IngredientFrame(){
-		//create list to hold existing ingredients
-		model = new DefaultListModel<String>();
-		list = new JList<String>(model);
-		list.setVisibleRowCount(10);
-		list.setFixedCellHeight(20);
-		list.setFixedCellWidth(140);
-		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        //create list to hold existing ingredients
+        model = new DefaultListModel<String>();
+	list = new JList<String>(model);
+	list.setVisibleRowCount(10);
+        list.setFixedCellHeight(20);
+	list.setFixedCellWidth(140);
+	list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+    ImageIcon homeIcon;
+
+
         scrollPane = new JScrollPane(list);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         listPanel = new JPanel(new BorderLayout());
         listPanel.add(scrollPane,BorderLayout.CENTER);
-        
+
         //create JPanel to hold buttons that go below list of ingredients
         btnPanel = new JPanel();
         btnPanel.setOpaque(true);
@@ -70,10 +65,12 @@ public class IngredientFrame {
         nameLabel.setFont(labelFont);
         labelPanel.add(nameLabel);
         labelPanel.add(Box.createRigidArea(new Dimension(0,50)));
+//        
         measurementLabel = new JLabel("Base Measure: ");
         measurementLabel.setFont(labelFont);
         labelPanel.add(measurementLabel);
         labelPanel.add(Box.createRigidArea(new Dimension(0,25)));
+
         caloriesLabel = new JLabel("Calories: ");
         caloriesLabel.setFont(labelFont);
         labelPanel.add(caloriesLabel);
@@ -109,11 +106,14 @@ public class IngredientFrame {
         nameField.setFont(fieldFont);
         fieldPanel.add(nameField);
         fieldPanel.add(Box.createRigidArea(new Dimension(0,50)));
-        cModel = new DefaultComboBoxModel<>(Measure.values());
+//
+        cModel = new DefaultComboBoxModel<>(Measure.values());         
         measurementBox = new JComboBox<Measure>(cModel);
         measurementBox.setFont(fieldFont);
         fieldPanel.add(measurementBox);
         fieldPanel.add(Box.createRigidArea(new Dimension(0,25)));
+
+
         caloriesField = new JTextField();
         caloriesField.setFont(fieldFont);
         fieldPanel.add(caloriesField);
@@ -140,11 +140,28 @@ public class IngredientFrame {
         removeBtn.setActionCommand("removeIngredient");
         addBtn.addActionListener(new IngredientListener());
         removeBtn.addActionListener(new IngredientListener());
-        
+
+        measurementBox.addActionListener(new measurementBoxListener());
+
+        homeIcon = new ImageIcon("homeIcon.png", "Go to home page");
+        homeBtn = new JButton(homeIcon);
+        homeBtn.setActionCommand("goHome");
+        homeBtn.setOpaque(true);
+        homeBtn.setPreferredSize(new Dimension(40, 40));
+        homeBtn.addActionListener(new IngredientListener());
+
+        headerPanel = new JPanel();
+        headerPanel.setOpaque(true);
+        headerPanel.setBackground(new Color(30,144,255));
+        headerPanel.add(homeBtn);
+
+
         //add components to JPanel
         mainPanel = new JPanel();
         mainPanel.setOpaque(true);
         mainPanel.setBackground(new Color(210,180,140));
+        mainPanel.add(homeBtn);
+//        mainPanel.add(headerPanel);
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.LINE_AXIS));
         mainPanel.add(Box.createRigidArea(new Dimension(100,0)));
         mainPanel.add(labelPanel);
@@ -153,9 +170,10 @@ public class IngredientFrame {
         mainPanel.add(Box.createRigidArea(new Dimension(300,0)));
         mainPanel.add(listPanel);
         mainPanel.add(Box.createRigidArea(new Dimension(25,0)));
-        
+
         //create JFrame and set basic settings
         frame = new JFrame("Manage Ingredients Screen");
+        frame.add(headerPanel);
         frame.add(mainPanel);
         frame.setSize(1400, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -170,23 +188,36 @@ public class IngredientFrame {
             Ingredient ing;
             if (command.equals("addIngredient")) {
                 String name = nameField.getText();
-                double calorie = Double.parseDouble(caloriesField.getText());
+                double calorie = Double.parseDouble(caloriesField.getText());               
+                //Measure xUnit = bsMsr;
                 double fat = Double.parseDouble(fatField.getText());
                 double carbs = Double.parseDouble(carbohydratesField.getText());
                 double fiber = Double.parseDouble(fiberField.getText());
                 double protein = Double.parseDouble(proteinField.getText());
 
-                ing = new Ingredient(name, null, calorie, fat, carbs, fiber, protein);
+                ing = new Ingredient(name, bsMsr, calorie, fat, carbs, fiber, protein);
 
                 userRecipe.addIngredient(ing, 1, "cup");
-                model.addElement(name);
+                model.addElement(name); //JULIE, ADD BASE MEASURE
             } else if (command.equals("removeIngredient")) {
                 int ind = list.getSelectedIndex();
                 userRecipe.removeIngredient(ind);
                 model.removeElementAt(ind);
+            } else if (command.equals("goHome")) {
+                frame.setVisible(false);
+//                openingFrame.setVisible(true);
             }
         }
     }
+            private class measurementBoxListener implements ActionListener 
+            {
+                public void actionPerformed(ActionEvent e) 
+                {
+                    JComboBox cb = new JComboBox();
+                    cb = (JComboBox)e.getSource();
+                    bsMsr = (Measure)cb.getSelectedItem();
+                }
+            }
 	
 	public static void main(String[] args){
 		IngredientFrame ingF = new IngredientFrame();
