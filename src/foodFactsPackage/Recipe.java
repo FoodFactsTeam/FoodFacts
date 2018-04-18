@@ -88,6 +88,30 @@ public class Recipe
             totalProtein += ingredients.get(i).getProtein() *ratio;
         }
     }
-
+    /**
+     * Returns a formatted string that contains the nutritional Information
+     * @return one formatted string
+     */
+    public String NutritionToString()
+    {
+        return String.format("Calories: "+String.valueOf(this.totalCalories)+"%nFat: "+String.valueOf(this.totalFat)
+                +"%nFiber: "+String.valueOf(this.totalFiber)+"%nCarbohydrates: "+String.valueOf(this.totalCarbs)+
+                "%nProtein: "+String.valueOf(this.totalProtein));
+    }
+    /**
+     * this is still being worked out.
+     * @return 
+     */
+    public String[] RecipeInfo()
+    {
+        String[] recipeInfo = new String[ingredients.size()+1];
+        
+       for(int i = 1; i < ingredients.size()&& i<quantities.size()&& i<units.size(); i++)
+       {
+           String element;
+           recipeInfo[i] = 
+       }
+       return ; 
+    }
 
 }
