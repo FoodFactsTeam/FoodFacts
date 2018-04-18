@@ -5,14 +5,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Main {
-        public static ArrayList <Ingredient> ingLib = new ArrayList<>();
+public class Main 
+{
+        public static ArrayList <Ingredient> ingredientStore = new ArrayList<>();
         public static ArrayList <Recipe> recLib = new ArrayList<>();
         
     public static void main(String[] args) 
     {
-        FoodFactsGUI gui = new FoodFactsGUI();        
-        IngredientFrame ingF = new IngredientFrame();
+        FoodFactsGUI openingFrame = new FoodFactsGUI();
+        openingFrame.createOpeningFrame();
+        openingFrame.createIngredientFrame();
         
     }
 }

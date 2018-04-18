@@ -1,6 +1,7 @@
 package foodFactsPackage;
 
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -153,7 +154,8 @@ public class IngredientFrame {
         headerPanel = new JPanel();
         headerPanel.setOpaque(true);
         headerPanel.setBackground(new Color(30,144,255));
-        headerPanel.add(homeBtn);
+        headerPanel.setLayout(new GridLayout(4,1));
+        //headerPanel.add(homeBtn);
 
 
         //add components to JPanel
@@ -161,7 +163,7 @@ public class IngredientFrame {
         mainPanel.setOpaque(true);
         mainPanel.setBackground(new Color(210,180,140));
         mainPanel.add(homeBtn);
-//        mainPanel.add(headerPanel);
+        mainPanel.add(headerPanel);
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.LINE_AXIS));
         mainPanel.add(Box.createRigidArea(new Dimension(100,0)));
         mainPanel.add(labelPanel);
@@ -196,7 +198,7 @@ public class IngredientFrame {
                 double protein = Double.parseDouble(proteinField.getText());
 
                 ing = new Ingredient(name, bsMsr, calorie, fat, carbs, fiber, protein);
-
+                Main.ingredientStore.add(ing);
                 userRecipe.addIngredient(ing, 1, "cup");
                 model.addElement(name); //JULIE, ADD BASE MEASURE
             } else if (command.equals("removeIngredient")) {
@@ -219,7 +221,4 @@ public class IngredientFrame {
                 }
             }
 	
-	public static void main(String[] args){
-		//IngredientFrame ingF = new IngredientFrame();
-	}
 }

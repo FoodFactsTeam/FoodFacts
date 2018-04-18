@@ -96,12 +96,13 @@ public class FoodFactsGUI {
 		
 		openingFrame.setSize(frameSize[0], frameSize[1]);
 		openingFrame.setVisible(true);
-		//instead of default exit on close, set serialize ingredients and recipes when closing
+                    //instead of default exit on close, set serialize ingredients and recipes when closing
 		openingFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-        //I didn't add this, but this looks like it would the ingredient library.
-	List<Ingredient> ingredientStore = new ArrayList<>();
+        //I'm not sure what this for. I couldn't find it anywhere, but I used the
+        // same name in MAIN and in the ingredient Frame.
+	//List<Ingredient> ingredientStore = new ArrayList<>();
 
 	private class ButtonClickListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
