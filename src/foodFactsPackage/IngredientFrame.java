@@ -154,7 +154,7 @@ public class IngredientFrame {
         headerPanel = new JPanel();
         headerPanel.setOpaque(true);
         headerPanel.setBackground(new Color(30,144,255));
-        headerPanel.setLayout(new GridLayout(4,1));
+        //headerPanel.setLayout(new GridLayout(4,1));
         //headerPanel.add(homeBtn);
 
 
