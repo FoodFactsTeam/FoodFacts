@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class Recipe 
 {
     String title;
+    String[] fullElements;
     ArrayList <Ingredient> ingredients = new ArrayList<>();
     ArrayList <Double> quantities = new ArrayList<>();
     ArrayList <String> units = new ArrayList<>();
@@ -89,29 +90,52 @@ public class Recipe
         }
     }
     /**
-     * Returns a formatted string that contains the nutritional Information
+     * Returns a formatted string that contains the nutritional Information meant 
+     * for the nutritional panel next to the recipe.
      * @return one formatted string
      */
     public String NutritionToString()
     {
-        return String.format("Calories: "+String.valueOf(this.totalCalories)+"%nFat: "+String.valueOf(this.totalFat)
-                +"%nFiber: "+String.valueOf(this.totalFiber)+"%nCarbohydrates: "+String.valueOf(this.totalCarbs)+
-                "%nProtein: "+String.valueOf(this.totalProtein));
+           return String.format("Calories:  %.2f%nFat:  %.2f%nFiber:    %.2f%nCarbohydrates:    %.2f"
+                   + "%nProtein %.2f",this.totalCalories,this.totalFat,this.totalFiber,this.totalCarbs,
+                   this.totalProtein);      
     }
+    
     /**
-     * this is still being worked out.
-     * @return 
+     * Returns a String array that lists all the Ingredients within a recipe
+     * @return String array 
      */
     public String[] RecipeInfo()
-    {
-        String[] recipeInfo = new String[ingredients.size()+1];
-        
-       for(int i = 1; i < ingredients.size()&& i<quantities.size()&& i<units.size(); i++)
-       {
-           String element;
-           recipeInfo[i] = 
-       }
-       return ; 
+    {   
+        String fullElement;
+        fullElements = new String[ingredients.size()+1];
+        //print a header
+        fullElements[0] = "     Ingredients  ";
+        //circle through the arrayLists
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i <ingredients.size(); i++)
+        {
+        // print the ingredient with the quantity and the unit            
+         fullElement = String.format("%.2f %s     %s",this.quantities.get(i),this.units.get(i),
+                 this.ingredients.get(i).getName());
+         fullElements[i+1] = fullElement;
+        }
+        return fullElements;
     }
 
+    public String FullRecipe()
+    {
+        this.RecipeInfo();
+        
+        StringBuilder fullRec = new StringBuilder();
+            for(String e: fullElements)
+            {
+                fullRec.append("%n");
+                fullRec.append(e);                
+            }
+       
+       return fullRec.toString();
+    }
+    
+    
 }
