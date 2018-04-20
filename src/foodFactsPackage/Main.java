@@ -14,7 +14,7 @@ public class Main
     {
         FoodFactsGUI openingFrame = new FoodFactsGUI();
         openingFrame.createOpeningFrame();
-        openingFrame.createIngredientFrame();
+        //openingFrame.createIngredientFrame();
         
     }
 }
