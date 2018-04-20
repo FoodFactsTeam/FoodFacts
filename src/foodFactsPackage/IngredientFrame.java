@@ -36,7 +36,6 @@ public class IngredientFrame {
 	list.setFixedCellWidth(140);
 	list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-    ImageIcon homeIcon;
 
 
         scrollPane = new JScrollPane(list);
@@ -144,18 +143,7 @@ public class IngredientFrame {
 
         measurementBox.addActionListener(new measurementBoxListener());
 
-        homeIcon = new ImageIcon("homeIcon.png", "Go to home page");
-        homeBtn = new JButton(homeIcon);
-        homeBtn.setActionCommand("goHome");
-        homeBtn.setOpaque(true);
-        homeBtn.setPreferredSize(new Dimension(40, 40));
-        homeBtn.addActionListener(new IngredientListener());
-
-        headerPanel = new JPanel();
-        headerPanel.setOpaque(true);
-        headerPanel.setBackground(new Color(30,144,255));
-        headerPanel.setLayout(new GridLayout(4,1));
-        //headerPanel.add(homeBtn);
+        headerPanel = new headerPanel();
 
 
         //add components to JPanel
