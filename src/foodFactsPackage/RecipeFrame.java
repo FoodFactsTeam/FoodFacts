@@ -136,6 +136,7 @@ public class RecipeFrame extends JFrame{
 		// create listener for Add IngredientButton
 		addIngredientBtn.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
+                            IngredientFrame additional = new IngredientFrame();
 				createIngredientPanel();
 				//repaint doesn't cause it to update view 
 				ingredientPanel.removeAll();
@@ -154,7 +155,7 @@ public class RecipeFrame extends JFrame{
 	}
 	
 	public void createIngredientPanel(){
-		System.out.println("createIngredientPanel method is being called by button");
+		//System.out.println("createIngredientPanel method is being called by button");
 		//initialize components
 		Dimension gap = new Dimension(30,0);
 		JPanel panel = new JPanel();

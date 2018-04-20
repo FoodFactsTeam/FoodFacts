@@ -108,8 +108,13 @@ public class FoodFactsGUI {
 		public void actionPerformed(ActionEvent e) {
 			String command = e.getActionCommand();
 			if (command.equals("add")) {
-				openingFrame.setVisible(false);
-				ingredientFrame.setVisible(true);
+				//openingFrame.setVisible(false);
+				//ingredientFrame.setVisible(true);
+                RecipeFrame rf = new RecipeFrame();
+		rf.setVisible(true);
+		rf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		rf.setSize(1000,600);
+		rf.setResizable(true);
 			} else if (command.equals("open")) {
 				openingFrame.setVisible(false);
 				ingredientFrame.setVisible(true);
