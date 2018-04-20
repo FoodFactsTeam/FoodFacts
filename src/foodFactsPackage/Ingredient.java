@@ -161,4 +161,8 @@ public class Ingredient
         protein = prt;
     }
     
+    public String IngToString()
+    {
+        return String.format("%s   %s",this.name,this.getBase().toString());
+    }
 }
