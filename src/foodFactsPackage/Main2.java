@@ -106,6 +106,15 @@ public class Main2 {
                 
                 applePie.removeIngredient(1);
                 System.out.print(applePie.NutritionToString());
+                System.out.print(applePie.NutritionToString());
+                System.out.println();
+                
+                for(String e:applePie.RecipeInfo())
+                {
+                    System.out.println(e);
+                }
+                
+                
     }
 }
 //RECIPE INPUT CLASS

@@ -122,7 +122,11 @@ public class Recipe
         }
         return fullElements;
     }
-
+    
+    /**
+     * an attempt to return all the array information in a string. Including all the new lines.
+     * @return a string, this doesn't work yet.
+     */
     public String FullRecipe()
     {
         this.RecipeInfo();
