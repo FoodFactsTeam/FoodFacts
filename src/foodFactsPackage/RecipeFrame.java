@@ -3,6 +3,7 @@ package foodFactsPackage;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
@@ -47,23 +48,30 @@ public class RecipeFrame extends JFrame{
 	JPanel mainPanel,ingredientPanel;
 	JLabel instructionsLabel;
 	JScrollPane jsPane;
-	ArrayList<JTextField> ingNames,ingQuantity;
+	ArrayList<JTextField> ingQuantity;
+	ArrayList<JComboBox<String>> ingNames;
 	ArrayList<JComboBox<Measure>> ingMeasurement;
 	ArrayList<JPanel> ingPanel;
 	JTextArea instructions;
+	JScrollPane ingScrollPane,instructionScrollPane;
+	Color bgColor;
 	
 	RecipeFrame(){
+		//create background color for gui
+		bgColor = new Color(210,180,140);
 		// initialize ArrayList's to hold components that store ingredient info for recipe
-		ingNames = new ArrayList<JTextField>();
+		ingNames = new ArrayList<JComboBox<String>>();
 		ingQuantity = new ArrayList<JTextField>();
 		ingMeasurement = new ArrayList<JComboBox<Measure>>();
 		ingPanel = new ArrayList<JPanel>();
 		
 		//create main panel
 		mainPanel = new JPanel();
+		mainPanel.setBackground(bgColor);
 		
 		//adds recipe name label and field to main panel...and serving label and field
 		JPanel panel1 = new JPanel();
+		panel1.setBackground(bgColor);
 		panel1.setLayout(new BoxLayout(panel1,BoxLayout.X_AXIS));
 		JLabel recipeNameLabel = new JLabel("Recipe Name: ");
 		panel1.add(recipeNameLabel);
@@ -80,6 +88,7 @@ public class RecipeFrame extends JFrame{
 		
 		//add JPanel with add ingredient and manage ingredients to main panel
 		JPanel btnPanel1 = new JPanel();
+		btnPanel1.setBackground(bgColor);
 		btnPanel1.setLayout(new BoxLayout(btnPanel1,BoxLayout.X_AXIS));
 		btnPanel1.add(Box.createRigidArea(new Dimension(150,0)));
 		JLabel ingLabel = new JLabel("Ingredients");
@@ -95,27 +104,41 @@ public class RecipeFrame extends JFrame{
 		
 		// add first ingredient to GUI...user can add more
 		ingredientPanel = new JPanel();
-		ingredientPanel.setLayout(new BoxLayout(ingredientPanel,BoxLayout.Y_AXIS));
+		ingredientPanel.setBackground(bgColor);
+		//ingredientPanel.setLayout(new BoxLayout(ingredientPanel,BoxLayout.Y_AXIS));
 		createIngredientPanel();
-		mainPanel.add(ingredientPanel);
-		
+		//mainPanel.add(ingredientPanel);
+		//create JScrollPane for ingreadient list
+		ingScrollPane = new JScrollPane(ingredientPanel);
+		ingScrollPane.setPreferredSize(new Dimension(900,200));
+		ingScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		ingScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		mainPanel.add(ingScrollPane);
+				
 		//Add JTextArea below ingredients to hold instructions for recipe
 		JPanel instructionPanel = new JPanel();
+		instructionPanel.setBackground(bgColor);
 		instructionPanel.setLayout(new BoxLayout(instructionPanel,BoxLayout.X_AXIS));
 		instructionsLabel = new JLabel("Recipe Instructions");
 		instructionPanel.add(Box.createRigidArea(new Dimension(400,0)));
 		instructionPanel.add(instructionsLabel);
 		instructionPanel.add(Box.createRigidArea(new Dimension(400,0)));
 		JPanel instructionTextPanel = new JPanel();
-		instructions = new JTextArea(10,80);
+		instructions = new JTextArea(12,80);
 		instructionTextPanel.add(instructions);
+		instructionScrollPane = new JScrollPane(instructionTextPanel);
+		instructionScrollPane.setPreferredSize(new Dimension(900,200));
+		instructionScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		instructionScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		mainPanel.add(ingScrollPane);
 		mainPanel.add(instructionPanel);
 		mainPanel.add(Box.createRigidArea(new Dimension(0,50)));
-		mainPanel.add(instructionTextPanel);
+		mainPanel.add(instructionScrollPane);
 		mainPanel.add(Box.createRigidArea(new Dimension(0,50)));
 		
 		//add buttons to save and display recipe
 		JPanel btnPanel2 = new JPanel();
+		btnPanel2.setBackground(bgColor);
 		JButton saveBtn = new JButton("Save Recipe");
 		JButton createBtn = new JButton("Create Recipe");
 		btnPanel2.setLayout(new BoxLayout(btnPanel2,BoxLayout.X_AXIS));
@@ -127,10 +150,7 @@ public class RecipeFrame extends JFrame{
 		mainPanel.add(Box.createRigidArea(new Dimension(0,50)));
 		mainPanel.add(btnPanel2);
 		
-		jsPane = new JScrollPane();
-		//jsPane.add(bg1);
-		//jsPane.add(bg2);
-		//mainPanel.add(jsPane);
+		// add entire panel holding all components to JFrame
 		add(mainPanel);
 		
 		// create listener for Add IngredientButton
@@ -140,7 +160,6 @@ public class RecipeFrame extends JFrame{
 				//repaint doesn't cause it to update view 
 				ingredientPanel.removeAll();
 				ingredientPanel.setLayout(new BoxLayout(ingredientPanel,BoxLayout.Y_AXIS));
-				System.out.println(ingPanel.size());
 				for (JPanel jp : ingPanel){
 					ingredientPanel.add(jp);
 			        ingredientPanel.add(Box.createRigidArea(new Dimension(30,0)));
@@ -151,15 +170,23 @@ public class RecipeFrame extends JFrame{
 			}
 		});
 		
+        //set properties of JFrame
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(1000,700);
+		setResizable(false);
+	
 	}
 	
 	public void createIngredientPanel(){
-		System.out.println("createIngredientPanel method is being called by button");
 		//initialize components
 		Dimension gap = new Dimension(30,0);
 		JPanel panel = new JPanel();
+		panel.setBackground(bgColor);
 		JLabel ingNameLabel = new JLabel("Name: ");
-		JTextField ingNameField = new JTextField(30);
+		JComboBox<String> ingNameComboBox = new JComboBox<String>();
+		ingNameComboBox.setPrototypeDisplayValue("ingredient approximately 30 characters long plus some space");
+		//JTextField ingNameField = new JTextField(30);
 		JLabel quantityLabel = new JLabel("Quantity: ");
 		JTextField qtyField = new JTextField(5);
 		DefaultComboBoxModel<Measure> model = new DefaultComboBoxModel<>(Measure.values());
@@ -168,7 +195,8 @@ public class RecipeFrame extends JFrame{
         
         //add components to JPanel
         panel.add(ingNameLabel);
-        panel.add(ingNameField);
+        panel.add(ingNameComboBox);
+        //panel.add(ingNameField);
         panel.add(Box.createRigidArea(gap));
         panel.add(quantityLabel);
         panel.add(qtyField);
@@ -179,7 +207,8 @@ public class RecipeFrame extends JFrame{
         panel.add(Box.createRigidArea(gap));
         
         //add jtextfields, jcombobox, and panel to ArrayLists for later reference
-        ingNames.add(ingNameField);
+        ingNames.add(ingNameComboBox);
+        //ingNames.add(ingNameField);
         ingQuantity.add(qtyField);
         ingMeasurement.add(measurementBox);
         ingPanel.add(panel);
@@ -187,6 +216,7 @@ public class RecipeFrame extends JFrame{
         //add panel to mainPanel
         ingredientPanel.add(panel);
         ingredientPanel.add(Box.createRigidArea(gap));
+        
 	}
 	
 	
@@ -194,9 +224,9 @@ public class RecipeFrame extends JFrame{
 	
 	public static void main(String[] args){
 		RecipeFrame rf = new RecipeFrame();
-		rf.setVisible(true);
-		rf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		rf.setSize(1000,600);
-		rf.setResizable(true);
+//		rf.setVisible(true);
+//		rf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		rf.setSize(1000,600);
+//		rf.setResizable(true);
 	}
 }
