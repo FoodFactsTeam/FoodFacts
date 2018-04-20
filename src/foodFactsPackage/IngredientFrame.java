@@ -191,7 +191,7 @@ public class IngredientFrame {
             if (command.equals("addIngredient")) {
                 String name = nameField.getText();
                 double calorie = Double.parseDouble(caloriesField.getText());               
-                //Measure xUnit = bsMsr;
+
                 double fat = Double.parseDouble(fatField.getText());
                 double carbs = Double.parseDouble(carbohydratesField.getText());
                 double fiber = Double.parseDouble(fiberField.getText());

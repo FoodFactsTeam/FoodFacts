@@ -60,4 +60,10 @@ public enum Measure
         return teaspoon;
     }    
 
+    public String toString()
+    {
+        String name;
+        name = this.name().substring(0,1) +this.name().substring(1);
+        return name;
+    }
 }

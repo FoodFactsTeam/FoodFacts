@@ -18,7 +18,7 @@ public class Recipe
     ArrayList <Double> quantities = new ArrayList<>();
     ArrayList <String> units = new ArrayList<>();
     ArrayList <String> instructions = new ArrayList<>();
-    double totalFiber;
+    double totalFiber,servings;
     double totalFat;
     double totalCarbs;
     double totalProtein;
@@ -64,6 +64,19 @@ public class Recipe
         quantities.remove(indx);
         units.remove(indx);
     }
+    /**
+     * this will return the number of servings per recipe
+     * @return double
+     */
+    public double getServings()
+    {
+        return servings;
+    }
+    
+    public void setServings(double srv)
+    {
+        servings = srv;
+    }
     
     public void calcNutrition()
     {
@@ -88,6 +101,11 @@ public class Recipe
             totalCarbs += ingredients.get(i).getCarbs() *ratio;
             totalProtein += ingredients.get(i).getProtein() *ratio;
         }
+        totalCalories = totalCalories/servings;
+        totalFat = totalFat/servings;
+        totalFiber = totalFiber/servings;
+        totalCarbs = totalCarbs/servings;
+        totalProtein = totalProtein/servings;
     }
     /**
      * Returns a formatted string that contains the nutritional Information meant 
@@ -96,8 +114,9 @@ public class Recipe
      */
     public String NutritionToString()
     {
-           return String.format("Calories:  %.2f%nFat:  %.2f%nFiber:    %.2f%nCarbohydrates:    %.2f"
-                   + "%nProtein %.2f",this.totalCalories,this.totalFat,this.totalFiber,this.totalCarbs,
+           return String.format("Nutrition Information based on %f servings%nCalories:  %.2f%nFat:  "
+                   + "%.2f%nFiber:    %.2f%nCarbohydrates:    %.2f"
+                   + "%nProtein %.2f",this.servings,this.totalCalories,this.totalFat,this.totalFiber,this.totalCarbs,
                    this.totalProtein);      
     }
     
