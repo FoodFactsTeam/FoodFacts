@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class Main 
 {
-        public static ArrayList <Ingredient> ingredientStore = new ArrayList<>();
-        public static ArrayList <Recipe> recLib = new ArrayList<>();
+        // static ArrayList <Ingredient> ingredientStore = new ArrayList<>();
+        //public static ArrayList <Recipe> recLib = new ArrayList<>();
         
     public static void main(String[] args) 
     {

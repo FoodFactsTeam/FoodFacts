@@ -24,7 +24,7 @@ public class IngredientFrame {
 	JComboBox<Measure> measurementBox;
         Measure bsMsr;
         
-	Recipe userRecipe;
+	//Recipe userRecipe;
 
         
 	IngredientFrame(){
@@ -136,13 +136,13 @@ public class IngredientFrame {
         fieldPanel.add(proteinField);
         fieldPanel.add(Box.createRigidArea(new Dimension(0,100)));
 
+        //measurementBox.addActionListener(new measurementBoxListener());
+       
         //Set action commands and add listeners to buttons
         addBtn.setActionCommand("addIngredient");
         removeBtn.setActionCommand("removeIngredient");
         addBtn.addActionListener(new IngredientListener());
         removeBtn.addActionListener(new IngredientListener());
-
-        measurementBox.addActionListener(new measurementBoxListener());
 
         homeIcon = new ImageIcon("homeIcon.png", "Go to home page");
         homeBtn = new JButton(homeIcon);
@@ -181,29 +181,45 @@ public class IngredientFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
-        userRecipe = new Recipe();
+        // = new Recipe();
 	}
-
+        /*            private class measurementBoxListener implements ActionListener
+        {
+        public void actionPerformed(ActionEvent e)
+        {
+        JComboBox cb = new JComboBox();
+        cb = (JComboBox)e.getSource();
+        }
+        }*/
     private class IngredientListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             String command = e.getActionCommand();
             Ingredient ing;
             if (command.equals("addIngredient")) {
                 String name = nameField.getText();
+                bsMsr = (Measure)measurementBox.getSelectedItem();
                 double calorie = Double.parseDouble(caloriesField.getText());               
-
                 double fat = Double.parseDouble(fatField.getText());
                 double carbs = Double.parseDouble(carbohydratesField.getText());
                 double fiber = Double.parseDouble(fiberField.getText());
                 double protein = Double.parseDouble(proteinField.getText());
 
                 ing = new Ingredient(name, bsMsr, calorie, fat, carbs, fiber, protein);
-                Main.ingredientStore.add(ing);
-                userRecipe.addIngredient(ing, 1, "cup");
-                model.addElement(name); //JULIE, ADD BASE MEASURE
+                Library.ingredientStore.add(ing);
+                
+                 //the below is specific to the recipe frame. we can't use 
+                //it here because we haven't set up the recipe yet
+                //we should use this method when we are saving a recipe. I think               
+                //userRecipe.addIngredient(ing, 1, "cup");
+                
+                model.addElement(ing.name); //JULIE, ADD BASE MEASURE
             } else if (command.equals("removeIngredient")) {
                 int ind = list.getSelectedIndex();
-                userRecipe.removeIngredient(ind);
+                Library.ingredientStore.remove(ind);
+                //the below is specific to the recipe frame. we can't use 
+                //it here because we haven't set up the recipe yet
+                //we should use this method when we are saving a recipe. I think
+                //userRecipe.removeIngredient(ind);
                 model.removeElementAt(ind);
             } else if (command.equals("goHome")) {
                 frame.setVisible(false);
@@ -211,15 +227,7 @@ public class IngredientFrame {
             }
         }
     }
-            private class measurementBoxListener implements ActionListener 
-            {
-                public void actionPerformed(ActionEvent e) 
-                {
-                    JComboBox cb = new JComboBox();
-                    cb = (JComboBox)e.getSource();
-                    bsMsr = (Measure)cb.getSelectedItem();
-                }
-            }
+
             public static void main(String[] args) 
     {
         FoodFactsGUI openingFrame = new FoodFactsGUI();

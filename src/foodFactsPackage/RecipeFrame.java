@@ -185,7 +185,8 @@ public class RecipeFrame extends JFrame{
 		JPanel panel = new JPanel();
 		panel.setBackground(bgColor);
 		JLabel ingNameLabel = new JLabel("Name: ");
-		JComboBox<String> ingNameComboBox = new JComboBox<String>();
+                //I added Library.ingtNames to the parameters to try to fill this box
+		JComboBox<String> ingNameComboBox = new JComboBox<String>(Library.ingtNames);
 		ingNameComboBox.setPrototypeDisplayValue("ingredient approximately 30 characters long plus some space");
 		//JTextField ingNameField = new JTextField(30);
 		JLabel quantityLabel = new JLabel("Quantity: ");
@@ -225,9 +226,9 @@ public class RecipeFrame extends JFrame{
 	
 	public static void main(String[] args){
 		RecipeFrame rf = new RecipeFrame();
-//		rf.setVisible(true);
-//		rf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		rf.setSize(1000,600);
-//		rf.setResizable(true);
+		rf.setVisible(true);
+		rf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		rf.setSize(1000,600);
+		rf.setResizable(true);
 	}
 }
