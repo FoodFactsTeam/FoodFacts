@@ -107,7 +107,7 @@ public class RecipeFrame extends JFrame{
                 {
                     public void actionPerformed(ActionEvent e) 
                     {
-                        //this is supposed to set the enum to the button
+                        //this is supposed
                         IngredientFrame additional = new IngredientFrame();
                     }            
                 });
@@ -118,7 +118,7 @@ public class RecipeFrame extends JFrame{
 		ingredientPanel = new JPanel();
 		ingredientPanel.setBackground(bgColor);
 		//ingredientPanel.setLayout(new BoxLayout(ingredientPanel,BoxLayout.Y_AXIS));
-		createIngredientPanel();
+		//createIngredientPanel();
 		//mainPanel.add(ingredientPanel);
 		//create JScrollPane for ingreadient list
 		ingScrollPane = new JScrollPane(ingredientPanel);
@@ -152,54 +152,22 @@ public class RecipeFrame extends JFrame{
 		JPanel btnPanel2 = new JPanel();
 		btnPanel2.setBackground(bgColor);
 		JButton saveBtn = new JButton("Save Recipe");
-                saveBtn.addActionListener(new ActionListener() 
-                {
-                    public void actionPerformed(ActionEvent e) 
-                    {                       
-                        Recipe firstR = new Recipe();
-                        String recpName = recipeNameField.getText(); 
-                        firstR.setTitle(recpName);
-                        //for each ingredient in      
-                            Ingredient[] recpIng = new Ingredient[ingNames.size()];
-                            Double [] recpQuants = new Double[ingQuantity.size()];
-                            String[] recpUnits = new String[ingMeasurement.size()];
+                
 
-                            for (int i = 0; i<ingNames.size(); i++)
-                            {   
-                                Object purple;
-                                purple = ingNames.get(i).getSelectedItem();
-                                System.out.println(purple.getClass());
-                               
-                                //recpIng[i] = (Ingredient)purple;
-                            } 
-
-                           for (int i=0; i<ingQuantity.size(); i++)
-                            { 
-                                Double rq;
-                                rq = Double.parseDouble(ingQuantity.get(i).getSelectedText());
-                                System.out.print(rq);
-                                //recpQuants[i] = rq;
-                            }
-                           
-                           for (int i = 0; i<ingMeasurement.size(); i++)
-                           { 
-                               Object pri = ingMeasurement.get(i).getSelectedItem();
-                               Measure fir = ((Measure)pri);
-                               recpUnits[i] = pri.toString();
-                           }
-                           for (int j = 0; j<ingNames.size(); j++)
-                           {
-                            firstR.addIngredient(recpIng[j],recpQuants[j],recpUnits[j]);
-                           }
-                                Library.recLib.add(firstR);                       
-                    }            
-                });
 		JButton createBtn = new JButton("Create Recipe");
 		btnPanel2.setLayout(new BoxLayout(btnPanel2,BoxLayout.X_AXIS));
 		btnPanel2.add(Box.createRigidArea(new Dimension(300,0)));
 		btnPanel2.add(saveBtn);
 		btnPanel2.add(Box.createRigidArea(new Dimension(100,0)));
 		btnPanel2.add(createBtn);
+                
+                createBtn.addActionListener(new ActionListener() 
+                {
+                    public void actionPerformed(ActionEvent e) 
+                    {                       
+                       recipeDisplayGUI displayRecp = new recipeDisplayGUI();
+                    }            
+                });
 		btnPanel2.add(Box.createRigidArea(new Dimension(300,0)));
 		mainPanel.add(Box.createRigidArea(new Dimension(0,50)));
 		mainPanel.add(btnPanel2);
@@ -211,6 +179,7 @@ public class RecipeFrame extends JFrame{
 		addIngredientBtn.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){                            
                                 ingMeasurement = new ArrayList<>();
+                                
                                 createIngredientPanel();
 				//repaint doesn't cause it to update view 
 				ingredientPanel.removeAll();
@@ -225,7 +194,56 @@ public class RecipeFrame extends JFrame{
 			}
 		});
                 
-                
+                saveBtn.addActionListener(new ActionListener(){
+                    public void actionPerformed(ActionEvent e) 
+                    {                       
+                        Recipe firstR = new Recipe();
+                        String recpName = recipeNameField.getText(); 
+                        firstR.setTitle(recpName);
+                        //for each ingredient in      
+                            Ingredient[] recpIng = new Ingredient[ingNames.size()];
+                            Double [] recpQuants = new Double[ingQuantity.size()];
+                            String[] recpUnits = new String[ingMeasurement.size()];
+
+                            for (int i = 0; i<ingNames.size(); i++)
+                            {   
+                                Object purple;
+                                purple = ingNames.get(i).getSelectedItem();
+                                
+                                for(Ingredient ing: Library.ingredientStore)
+                                {
+                                    if (ing.toString().equals(purple.toString()))
+                                      recpIng[i]=ing;
+                                }
+                            } 
+
+                           for (int i=0; i<ingQuantity.size(); i++)
+                            { 
+                                JTextField rq;
+                                String rqtx;
+                                double pink = 0;
+                                for (JTextField iq: ingQuantity)
+                                {
+                                    rqtx = iq.getSelectedText();
+                                    pink = Double.parseDouble(rqtx);
+                                    recpQuants[i] = pink;
+                                }
+                                    
+                            }
+                           
+                           for (int i = 0; i<ingMeasurement.size(); i++)
+                           { 
+                               Object pri = ingMeasurement.get(i).getSelectedItem();
+                               Measure fir = ((Measure)pri);
+                               recpUnits[i] = pri.toString();
+                           }
+                           for (int j = 0; j<ingNames.size(); j++)
+                           {
+                            firstR.addIngredient(recpIng[j],recpQuants[j],recpUnits[j]);
+                           }
+                                Library.recLib.add(firstR);                       
+                    }            
+                });           
 		
         //set properties of JFrame
 		setVisible(true);
@@ -243,7 +261,8 @@ public class RecipeFrame extends JFrame{
 		JLabel ingNameLabel = new JLabel("Name: ");
                 //I added Library.ingtNames to the parameters to try to fill this box
 		JComboBox<String> ingNameComboBox = new JComboBox<String>(Library.ingtNames);
-		ingNameComboBox.setPrototypeDisplayValue("ingredient approximately 30 characters long plus some space");
+		ingNameComboBox.setPrototypeDisplayValue("ingredient approximately 30 characters "
+                        + "long plus some space");
 		//JTextField ingNameField = new JTextField(30);
 		JLabel quantityLabel = new JLabel("Quantity: ");
 		JTextField qtyField = new JTextField(5);
