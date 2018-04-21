@@ -25,6 +25,11 @@ public class Recipe
     double totalCalories;
     double index;
     
+    public Recipe()
+    {
+        
+    }
+    
     /**
      * get the title of the recipe
      * @return String Title of the recipe

@@ -183,14 +183,14 @@ public class IngredientFrame {
 
         // = new Recipe();
 	}
-        /*            private class measurementBoxListener implements ActionListener
+                    private class measurementBoxListener implements ActionListener
         {
         public void actionPerformed(ActionEvent e)
         {
-        JComboBox cb = new JComboBox();
-        cb = (JComboBox)e.getSource();
+            JComboBox cb = new JComboBox();
+            cb = (JComboBox)e.getSource();
         }
-        }*/
+        }
     private class IngredientListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             String command = e.getActionCommand();
@@ -203,27 +203,18 @@ public class IngredientFrame {
                 double carbs = Double.parseDouble(carbohydratesField.getText());
                 double fiber = Double.parseDouble(fiberField.getText());
                 double protein = Double.parseDouble(proteinField.getText());
-
                 ing = new Ingredient(name, bsMsr, calorie, fat, carbs, fiber, protein);
                 Library.ingredientStore.add(ing);                
-                 //the below is specific to the recipe frame. we can't use 
-                //it here because we haven't set up the recipe yet
-                //we should use this method when we are saving a recipe. I think               
-                //userRecipe.addIngredient(ing, 1, "cup");
+                String ingDis = ing.toString();
                 
-                model.addElement(ing.name); //JULIE, ADD BASE MEASURE
+                model.addElement(ingDis); //JULIE, ADD BASE MEASURE
             } else if (command.equals("removeIngredient")) {
                 int ind = list.getSelectedIndex();
                 Library.ingredientStore.remove(ind);
-                //the below is specific to the recipe frame. we can't use 
-                //it here because we haven't set up the recipe yet
-                //we should use this method when we are saving a recipe. I think
-                //userRecipe.removeIngredient(ind);
                 model.removeElementAt(ind);
             } else if (command.equals("goHome")) {
                 frame.setVisible(false);
                 Library.getIngrtNames();
-//                openingFrame.setVisible(true);
             }
         }
     }

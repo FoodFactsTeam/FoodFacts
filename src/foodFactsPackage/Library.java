@@ -14,18 +14,24 @@ import java.util.ArrayList;
  */
 public class Library 
 {
+        /**
+         * an array list of Ingredients
+         */
         public static ArrayList <Ingredient> ingredientStore = new ArrayList<>();
         public static ArrayList <Recipe> recLib = new ArrayList<>();
-        
+
         public static ArrayList<String> ingrtNames; 
+        /**
+         * String array of Ingredient names
+         */
         public static String[] ingtNames = {"Please Add Ingredient"};
         
         public static void getIngrtNames ()
         {
-            for (int i=0; i<ingredientStore.size(); i++)
+           ingtNames = new String[ingredientStore.size()];
+           for (int i=0; i<ingredientStore.size(); i++)
             {
-                ingrtNames.add(ingredientStore.get(i).IngToString());
-                ingtNames[i] = ingredientStore.get(i).IngToString();
+                ingtNames[i] = ingredientStore.get(i).toString();
             }
            
         }

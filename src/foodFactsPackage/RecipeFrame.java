@@ -48,9 +48,12 @@ public class RecipeFrame extends JFrame{
 	JPanel mainPanel,ingredientPanel;
 	JLabel instructionsLabel;
 	JScrollPane jsPane;
+        //this is the array list holding all the ingQuantities
 	ArrayList<JTextField> ingQuantity;
+        //this is the 
 	ArrayList<JComboBox<String>> ingNames;
 	ArrayList<JComboBox<Measure>> ingMeasurement;
+        Ingredient [] recpIng;
 	ArrayList<JPanel> ingPanel;
 	JTextArea instructions;
 	JScrollPane ingScrollPane,instructionScrollPane;
@@ -71,34 +74,43 @@ public class RecipeFrame extends JFrame{
 		
 		//adds recipe name label and field to main panel...and serving label and field
 		JPanel panel1 = new JPanel();
-		panel1.setBackground(bgColor);
-		panel1.setLayout(new BoxLayout(panel1,BoxLayout.X_AXIS));
+                    panel1.setBackground(bgColor);
+                    panel1.setLayout(new BoxLayout(panel1,BoxLayout.X_AXIS));
 		JLabel recipeNameLabel = new JLabel("Recipe Name: ");
-		panel1.add(recipeNameLabel);
-		JTextField recipeNameField = new JTextField(30);
-		panel1.add(recipeNameField);
-		panel1.add(Box.createRigidArea(new Dimension(50,0)));
+                    panel1.add(recipeNameLabel);
+                //LOOK HERE for User'Recipe Name
+                    JTextField recipeNameField = new JTextField(30);
+                        panel1.add(recipeNameField);
+                        panel1.add(Box.createRigidArea(new Dimension(50,0)));
 		JLabel servingLabel = new JLabel("Number of Servings: ");
-		panel1.add(servingLabel);
-		JTextField servingField = new JTextField(5);
-		panel1.add(servingField);
-		panel1.add(Box.createRigidArea(new Dimension(300,0)));
+                    panel1.add(servingLabel);
+                    JTextField servingField = new JTextField(5);
+                        panel1.add(servingField);
+                        panel1.add(Box.createRigidArea(new Dimension(300,0)));
 		mainPanel.add(panel1);
 		mainPanel.add(Box.createRigidArea(new Dimension(0,100)));
 		
 		//add JPanel with add ingredient and manage ingredients to main panel
 		JPanel btnPanel1 = new JPanel();
-		btnPanel1.setBackground(bgColor);
-		btnPanel1.setLayout(new BoxLayout(btnPanel1,BoxLayout.X_AXIS));
-		btnPanel1.add(Box.createRigidArea(new Dimension(150,0)));
+                    btnPanel1.setBackground(bgColor);
+                    btnPanel1.setLayout(new BoxLayout(btnPanel1,BoxLayout.X_AXIS));
+                    btnPanel1.add(Box.createRigidArea(new Dimension(150,0)));
 		JLabel ingLabel = new JLabel("Ingredients");
-		btnPanel1.add(ingLabel);
-		btnPanel1.add(Box.createRigidArea(new Dimension(350,0)));
+                    btnPanel1.add(ingLabel);
+                    btnPanel1.add(Box.createRigidArea(new Dimension(350,0)));
 		JButton addIngredientBtn = new JButton("Add Ingredient");
-		btnPanel1.add(add(addIngredientBtn));
-		btnPanel1.add(Box.createRigidArea(new Dimension(25,0)));
+                    btnPanel1.add(add(addIngredientBtn));
+                    btnPanel1.add(Box.createRigidArea(new Dimension(25,0)));
 		JButton manageIngredientBtn = new JButton("Manage Ingredients");
-		btnPanel1.add(manageIngredientBtn);
+                    btnPanel1.add(manageIngredientBtn);
+                manageIngredientBtn.addActionListener(new ActionListener() 
+                {
+                    public void actionPerformed(ActionEvent e) 
+                    {
+                        //this is supposed to set the enum to the button
+                        IngredientFrame additional = new IngredientFrame();
+                    }            
+                });
 		mainPanel.add(btnPanel1);
 		mainPanel.add(Box.createRigidArea(new Dimension(0,50)));
 		
@@ -117,12 +129,12 @@ public class RecipeFrame extends JFrame{
 				
 		//Add JTextArea below ingredients to hold instructions for recipe
 		JPanel instructionPanel = new JPanel();
-		instructionPanel.setBackground(bgColor);
-		instructionPanel.setLayout(new BoxLayout(instructionPanel,BoxLayout.X_AXIS));
-		instructionsLabel = new JLabel("Recipe Instructions");
-		instructionPanel.add(Box.createRigidArea(new Dimension(400,0)));
-		instructionPanel.add(instructionsLabel);
-		instructionPanel.add(Box.createRigidArea(new Dimension(400,0)));
+                    instructionPanel.setBackground(bgColor);
+                    instructionPanel.setLayout(new BoxLayout(instructionPanel,BoxLayout.X_AXIS));
+                    instructionsLabel = new JLabel("Recipe Instructions");
+                    instructionPanel.add(Box.createRigidArea(new Dimension(400,0)));
+                    instructionPanel.add(instructionsLabel);
+                    instructionPanel.add(Box.createRigidArea(new Dimension(400,0)));
 		JPanel instructionTextPanel = new JPanel();
 		instructions = new JTextArea(12,80);
 		instructionTextPanel.add(instructions);
@@ -140,6 +152,48 @@ public class RecipeFrame extends JFrame{
 		JPanel btnPanel2 = new JPanel();
 		btnPanel2.setBackground(bgColor);
 		JButton saveBtn = new JButton("Save Recipe");
+                saveBtn.addActionListener(new ActionListener() 
+                {
+                    public void actionPerformed(ActionEvent e) 
+                    {                       
+                        Recipe firstR = new Recipe();
+                        String recpName = recipeNameField.getText(); 
+                        firstR.setTitle(recpName);
+                        //for each ingredient in      
+                            Ingredient[] recpIng = new Ingredient[ingNames.size()];
+                            Double [] recpQuants = new Double[ingQuantity.size()];
+                            String[] recpUnits = new String[ingMeasurement.size()];
+
+                            for (int i = 0; i<ingNames.size(); i++)
+                            {   
+                                Object purple;
+                                purple = ingNames.get(i).getSelectedItem();
+                                System.out.println(purple.getClass());
+                               
+                                //recpIng[i] = (Ingredient)purple;
+                            } 
+
+                           for (int i=0; i<ingQuantity.size(); i++)
+                            { 
+                                Double rq;
+                                rq = Double.parseDouble(ingQuantity.get(i).getSelectedText());
+                                System.out.print(rq);
+                                //recpQuants[i] = rq;
+                            }
+                           
+                           for (int i = 0; i<ingMeasurement.size(); i++)
+                           { 
+                               Object pri = ingMeasurement.get(i).getSelectedItem();
+                               Measure fir = ((Measure)pri);
+                               recpUnits[i] = pri.toString();
+                           }
+                           for (int j = 0; j<ingNames.size(); j++)
+                           {
+                            firstR.addIngredient(recpIng[j],recpQuants[j],recpUnits[j]);
+                           }
+                                Library.recLib.add(firstR);                       
+                    }            
+                });
 		JButton createBtn = new JButton("Create Recipe");
 		btnPanel2.setLayout(new BoxLayout(btnPanel2,BoxLayout.X_AXIS));
 		btnPanel2.add(Box.createRigidArea(new Dimension(300,0)));
@@ -152,13 +206,12 @@ public class RecipeFrame extends JFrame{
 		
 		// add entire panel holding all components to JFrame
 		add(mainPanel);
-		
+						
 		// create listener for Add IngredientButton
 		addIngredientBtn.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
-                            IngredientFrame additional = new IngredientFrame();
-				createIngredientPanel();
+			public void mouseClicked(MouseEvent e){                            
                                 ingMeasurement = new ArrayList<>();
+                                createIngredientPanel();
 				//repaint doesn't cause it to update view 
 				ingredientPanel.removeAll();
 				ingredientPanel.setLayout(new BoxLayout(ingredientPanel,BoxLayout.Y_AXIS));
@@ -171,11 +224,13 @@ public class RecipeFrame extends JFrame{
 				//paintAll(getGrapics());
 			}
 		});
+                
+                
 		
         //set properties of JFrame
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1000,700);
+		setSize(1000,900);
 		setResizable(false);
 	
 	}
@@ -220,16 +275,6 @@ public class RecipeFrame extends JFrame{
         ingredientPanel.add(panel);
         ingredientPanel.add(Box.createRigidArea(gap));
         
-	}
-	
-	
-	
-	
-	public static void main(String[] args){
-		RecipeFrame rf = new RecipeFrame();
-		rf.setVisible(true);
-		rf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		rf.setSize(1000,600);
-		rf.setResizable(true);
+        
 	}
 }

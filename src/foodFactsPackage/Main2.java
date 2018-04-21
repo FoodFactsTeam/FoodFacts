@@ -95,7 +95,7 @@ public class Main2 {
                 Recipe applePie = new Recipe();
                 applePie.addIngredient(firstIn, 3, "unit");
                 applePie.addIngredient(secondIn, 3, "cup");
-                
+                applePie.setServings(8);
                 applePie.calcNutrition();
                 System.out.println("Total Fat " + applePie.totalFat);
                 System.out.println("Total Calories "+ applePie.totalCalories);
@@ -109,6 +109,21 @@ public class Main2 {
                 
                 System.out.println(applePie.units.get(1));
                 
+                
+                System.out.println("Library Test");
+                Library.ingredientStore.add(firstIn);
+                Library.ingredientStore.add(secondIn);
+                
+                for(String e: Library.ingtNames)
+                    System.out.println(e);
+                    
+                Library.getIngrtNames();
+                for(String e: Library.ingtNames)
+                    System.out.println(e);
+                
+                System.out.println(firstIn.getBase().toString());
+                System.out.println(firstIn.toString());
+                System.out.println(secondIn.toString());
                 applePie.removeIngredient(1);
                 System.out.print(applePie.NutritionToString());
                 System.out.print(applePie.NutritionToString());
