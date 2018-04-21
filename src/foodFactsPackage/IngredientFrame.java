@@ -204,7 +204,7 @@ public class IngredientFrame {
                 double fiber = Double.parseDouble(fiberField.getText());
                 double protein = Double.parseDouble(proteinField.getText());
                 ing = new Ingredient(name, bsMsr, calorie, fat, carbs, fiber, protein);
-                Library.ingredientStore.add(ing);                
+                //Library.ingredientStore.add(ing);                
                 String ingDis = ing.toString();
                 
                 model.addElement(ingDis); //JULIE, ADD BASE MEASURE

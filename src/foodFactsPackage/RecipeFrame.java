@@ -63,10 +63,10 @@ public class RecipeFrame extends JFrame{
 		//create background color for gui
 		bgColor = new Color(210,180,140);
 		// initialize ArrayList's to hold components that store ingredient info for recipe
-		ingNames = new ArrayList<JComboBox<String>>();
-		ingQuantity = new ArrayList<JTextField>();
-		ingMeasurement = new ArrayList<JComboBox<Measure>>();
-		ingPanel = new ArrayList<JPanel>();
+		ingNames = new ArrayList<>();
+		ingQuantity = new ArrayList<>();
+		ingMeasurement = new ArrayList<>();
+		ingPanel = new ArrayList<>();
 		
 		//create main panel
 		mainPanel = new JPanel();
@@ -218,17 +218,15 @@ public class RecipeFrame extends JFrame{
                             } 
 
                            for (int i=0; i<ingQuantity.size(); i++)
-                            { 
+                            {                                 
                                 JTextField rq;
                                 String rqtx;
                                 double pink = 0;
-                                for (JTextField iq: ingQuantity)
-                                {
-                                    rqtx = iq.getSelectedText();
+                                    rq = ingQuantity.get(i);
+                                    rqtx = rq.getText();
+                                    System.out.println(rqtx);
                                     pink = Double.parseDouble(rqtx);
-                                    recpQuants[i] = pink;
-                                }
-                                    
+                                recpQuants[i] = pink;    
                             }
                            
                            for (int i = 0; i<ingMeasurement.size(); i++)
@@ -292,8 +290,6 @@ public class RecipeFrame extends JFrame{
         
         //add panel to mainPanel
         ingredientPanel.add(panel);
-        ingredientPanel.add(Box.createRigidArea(gap));
-        
-        
+        ingredientPanel.add(Box.createRigidArea(gap));       
 	}
 }
