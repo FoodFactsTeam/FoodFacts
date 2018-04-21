@@ -166,7 +166,7 @@ public class Ingredient
     @Override
     public String toString()
     {
-        return String.format("INGREDIENT: %s  (%s)",this.name,this.getBase().toString());
+        return String.format("%s  (%s)",this.name,this.getBase().toString());
     }
 
     @Override
