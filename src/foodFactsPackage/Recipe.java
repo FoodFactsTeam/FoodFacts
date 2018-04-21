@@ -131,19 +131,32 @@ public class Recipe
         //print a header
         fullElements[0] = "     Ingredients  ";
         //circle through the arrayLists
-        StringBuilder sb = new StringBuilder();
-        for(int i=0; i <ingredients.size(); i++)
+        //StringBuilder sb = new StringBuilder();
+        int i;
+        for( i=1; i <ingredients.size(); i++)
         {
         // print the ingredient with the quantity and the unit            
          fullElement = String.format("%.2f %s     %s",this.quantities.get(i),this.units.get(i),
                  this.ingredients.get(i).getName());
-         fullElements[i+1] = fullElement;
+         fullElements[i] = fullElement;
         }
+        fullElement = " Instructions    ";
+        fullElements[i] = fullElement;
+        i++;
+        for (i = i; i< (ingredients.size()+instructions.size()-1); i++)
+        {
+            for (int j = 0; j<instructions.size(); j++)
+            {
+                fullElements[i] = instructions.get(j);
+            }
+        }
+        
         return fullElements;
     }
     
     /**
      * an attempt to return all the array information in a string. Including all the new lines.
+     * This isn't working
      * @return a string, this doesn't work yet.
      */
     public String FullRecipe()

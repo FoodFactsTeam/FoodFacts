@@ -1,6 +1,6 @@
 package foodFactsPackage;
 
-/*package foodFactsPackage.BuildAids;
+
 
 
 import foodFactsPackage.Ingredient;
@@ -61,7 +61,7 @@ public class Main2 {
                 System.out.println(applePie.units.get(1));
                 
                 applePie.removeIngredient(2*/
-/*        		Measure first = Measure.CUP;
+      		Measure first = Measure.CUP;
                 System.out.println(first.getCupRatio());
 		System.out.println(first.getTablespoonRatio());
                 System.out.println(first.getTeaspoonRatio());
@@ -126,4 +126,4 @@ public class Main2 {
 //
 
 //RECIPE DISPLAY CLASS
-//To string method for Recipe class should could display entire string */
+//To string method for Recipe class should could display entire string 

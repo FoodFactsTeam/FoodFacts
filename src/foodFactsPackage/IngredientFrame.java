@@ -205,8 +205,7 @@ public class IngredientFrame {
                 double protein = Double.parseDouble(proteinField.getText());
 
                 ing = new Ingredient(name, bsMsr, calorie, fat, carbs, fiber, protein);
-                Library.ingredientStore.add(ing);
-                
+                Library.ingredientStore.add(ing);                
                  //the below is specific to the recipe frame. we can't use 
                 //it here because we haven't set up the recipe yet
                 //we should use this method when we are saving a recipe. I think               
@@ -223,6 +222,7 @@ public class IngredientFrame {
                 model.removeElementAt(ind);
             } else if (command.equals("goHome")) {
                 frame.setVisible(false);
+                Library.getIngrtNames();
 //                openingFrame.setVisible(true);
             }
         }

@@ -158,6 +158,7 @@ public class RecipeFrame extends JFrame{
 			public void mouseClicked(MouseEvent e){
                             IngredientFrame additional = new IngredientFrame();
 				createIngredientPanel();
+                                ingMeasurement = new ArrayList<>();
 				//repaint doesn't cause it to update view 
 				ingredientPanel.removeAll();
 				ingredientPanel.setLayout(new BoxLayout(ingredientPanel,BoxLayout.Y_AXIS));
