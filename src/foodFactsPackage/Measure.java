@@ -60,4 +60,15 @@ public enum Measure
         return teaspoon;
     }    
 
+    /**
+     * Convert the enum to a string containing name
+     * @return 
+     */
+    @Override
+    public String toString()
+    {
+        String name;
+        name = this.name().substring(0,1) +this.name().substring(1).toLowerCase();
+        return name;
+    }
 }

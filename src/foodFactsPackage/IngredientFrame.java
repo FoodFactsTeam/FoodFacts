@@ -24,7 +24,7 @@ public class IngredientFrame {
 	JComboBox<Measure> measurementBox;
         Measure bsMsr;
         
-	Recipe userRecipe;
+	//Recipe userRecipe;
 
         
 	IngredientFrame(){
@@ -135,15 +135,26 @@ public class IngredientFrame {
         fieldPanel.add(proteinField);
         fieldPanel.add(Box.createRigidArea(new Dimension(0,100)));
 
+        //measurementBox.addActionListener(new measurementBoxListener());
+       
         //Set action commands and add listeners to buttons
         addBtn.setActionCommand("addIngredient");
         removeBtn.setActionCommand("removeIngredient");
         addBtn.addActionListener(new IngredientListener());
         removeBtn.addActionListener(new IngredientListener());
 
-        measurementBox.addActionListener(new measurementBoxListener());
+        homeIcon = new ImageIcon("homeIcon.png", "Go to home page");
+        homeBtn = new JButton(homeIcon);
+        homeBtn.setActionCommand("goHome");
+        homeBtn.setOpaque(true);
+        homeBtn.setPreferredSize(new Dimension(40, 40));
+        homeBtn.addActionListener(new IngredientListener());
 
-        headerPanel = new headerPanel();
+        headerPanel = new JPanel();
+        headerPanel.setOpaque(true);
+        headerPanel.setBackground(new Color(30,144,255));
+        headerPanel.setLayout(new GridLayout(4,1));
+        //headerPanel.add(homeBtn);
 
 
         //add components to JPanel
@@ -169,45 +180,44 @@ public class IngredientFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
-        userRecipe = new Recipe();
+        // = new Recipe();
 	}
-
+                    private class measurementBoxListener implements ActionListener
+        {
+        public void actionPerformed(ActionEvent e)
+        {
+            JComboBox cb = new JComboBox();
+            cb = (JComboBox)e.getSource();
+        }
+        }
     private class IngredientListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             String command = e.getActionCommand();
             Ingredient ing;
             if (command.equals("addIngredient")) {
                 String name = nameField.getText();
+                bsMsr = (Measure)measurementBox.getSelectedItem();
                 double calorie = Double.parseDouble(caloriesField.getText());               
-                //Measure xUnit = bsMsr;
                 double fat = Double.parseDouble(fatField.getText());
                 double carbs = Double.parseDouble(carbohydratesField.getText());
                 double fiber = Double.parseDouble(fiberField.getText());
                 double protein = Double.parseDouble(proteinField.getText());
-
                 ing = new Ingredient(name, bsMsr, calorie, fat, carbs, fiber, protein);
-                Main.ingredientStore.add(ing);
-                userRecipe.addIngredient(ing, 1, "cup");
-                model.addElement(name); //JULIE, ADD BASE MEASURE
+                Library.ingredientStore.add(ing);                
+                String ingDis = ing.toString();
+                
+                model.addElement(ingDis); //JULIE, ADD BASE MEASURE
             } else if (command.equals("removeIngredient")) {
                 int ind = list.getSelectedIndex();
-                userRecipe.removeIngredient(ind);
+                Library.ingredientStore.remove(ind);
                 model.removeElementAt(ind);
             } else if (command.equals("goHome")) {
                 frame.setVisible(false);
-//                openingFrame.setVisible(true);
+                Library.getIngrtNames();
             }
         }
     }
-            private class measurementBoxListener implements ActionListener 
-            {
-                public void actionPerformed(ActionEvent e) 
-                {
-                    JComboBox cb = new JComboBox();
-                    cb = (JComboBox)e.getSource();
-                    bsMsr = (Measure)cb.getSelectedItem();
-                }
-            }
+
             public static void main(String[] args) 
     {
         FoodFactsGUI openingFrame = new FoodFactsGUI();

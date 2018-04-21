@@ -18,12 +18,17 @@ public class Recipe
     ArrayList <Double> quantities = new ArrayList<>();
     ArrayList <String> units = new ArrayList<>();
     ArrayList <String> instructions = new ArrayList<>();
-    double totalFiber;
+    double totalFiber,servings;
     double totalFat;
     double totalCarbs;
     double totalProtein;
     double totalCalories;
     double index;
+    
+    public Recipe()
+    {
+        
+    }
     
     /**
      * get the title of the recipe
@@ -64,6 +69,19 @@ public class Recipe
         quantities.remove(indx);
         units.remove(indx);
     }
+    /**
+     * this will return the number of servings per recipe
+     * @return double
+     */
+    public double getServings()
+    {
+        return servings;
+    }
+    
+    public void setServings(double srv)
+    {
+        servings = srv;
+    }
     
     public void calcNutrition()
     {
@@ -88,6 +106,11 @@ public class Recipe
             totalCarbs += ingredients.get(i).getCarbs() *ratio;
             totalProtein += ingredients.get(i).getProtein() *ratio;
         }
+        totalCalories = totalCalories/servings;
+        totalFat = totalFat/servings;
+        totalFiber = totalFiber/servings;
+        totalCarbs = totalCarbs/servings;
+        totalProtein = totalProtein/servings;
     }
     /**
      * Returns a formatted string that contains the nutritional Information meant 
@@ -96,8 +119,9 @@ public class Recipe
      */
     public String NutritionToString()
     {
-           return String.format("Calories:  %.2f%nFat:  %.2f%nFiber:    %.2f%nCarbohydrates:    %.2f"
-                   + "%nProtein %.2f",this.totalCalories,this.totalFat,this.totalFiber,this.totalCarbs,
+           return String.format("Nutrition Information based on %f servings%nCalories:  %.2f%nFat:  "
+                   + "%.2f%nFiber:    %.2f%nCarbohydrates:    %.2f"
+                   + "%nProtein %.2f",this.servings,this.totalCalories,this.totalFat,this.totalFiber,this.totalCarbs,
                    this.totalProtein);      
     }
     
@@ -112,19 +136,32 @@ public class Recipe
         //print a header
         fullElements[0] = "     Ingredients  ";
         //circle through the arrayLists
-        StringBuilder sb = new StringBuilder();
-        for(int i=0; i <ingredients.size(); i++)
+        //StringBuilder sb = new StringBuilder();
+        int i;
+        for( i=1; i <ingredients.size(); i++)
         {
         // print the ingredient with the quantity and the unit            
          fullElement = String.format("%.2f %s     %s",this.quantities.get(i),this.units.get(i),
                  this.ingredients.get(i).getName());
-         fullElements[i+1] = fullElement;
+         fullElements[i] = fullElement;
         }
+        fullElement = " Instructions    ";
+        fullElements[i] = fullElement;
+        i++;
+        for (i = i; i< (ingredients.size()+instructions.size()-1); i++)
+        {
+            for (int j = 0; j<instructions.size(); j++)
+            {
+                fullElements[i] = instructions.get(j);
+            }
+        }
+        
         return fullElements;
     }
     
     /**
      * an attempt to return all the array information in a string. Including all the new lines.
+     * This isn't working
      * @return a string, this doesn't work yet.
      */
     public String FullRecipe()

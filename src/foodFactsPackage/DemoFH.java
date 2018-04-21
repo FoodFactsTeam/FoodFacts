@@ -1,5 +1,6 @@
 package foodFactsPackage;
 
+import foodFactsPackage.FileHandler;
 import java.io.Serializable;
 import java.util.ArrayList;
 

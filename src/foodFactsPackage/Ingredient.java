@@ -5,6 +5,8 @@
  */
 package foodFactsPackage;
 
+import java.util.Objects;
+
 /**
  * The ingredient class
  * @author deliapathak
@@ -159,6 +161,41 @@ public class Ingredient
     public void setProtein(double prt)
     {
         protein = prt;
+    }
+    
+    @Override
+    public String toString()
+    {
+        return String.format("%s  (%s)",this.name,this.getBase().toString());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.name);
+        hash = 97 * hash + Objects.hashCode(this.base);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Ingredient other = (Ingredient) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (this.base != other.base) {
+            return false;
+        }
+        return true;
     }
     
 }
