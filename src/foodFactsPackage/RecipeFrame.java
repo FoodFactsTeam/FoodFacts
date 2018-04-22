@@ -41,6 +41,7 @@ import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.JMenuItem;
 
@@ -270,17 +271,52 @@ public class RecipeFrame extends JFrame{
         JComboBox<Measure> measurementBox = new JComboBox<Measure>(model);
         
         JButton deleteBtn = new JButton("Delete");
+        //random int assigned to actionCommand will be used to find index of that delete button.
+        //this index will be used to delete everything related to an ingredient when the delete
+        //button is pressed.
+        Random rand = new Random();
+        String actCmnd = Integer.toString(rand.nextInt());
+        System.out.println(actCmnd);
+        deleteBtn.setActionCommand(actCmnd);
+        ingNameComboBox.setActionCommand(actCmnd);
+        
+        
         deleteBtn.addActionListener(new ActionListener() 
             {
                 public void actionPerformed(ActionEvent e) 
                 {
+                	//find index of this button in ingredient list of recipe
+                	JButton b = (JButton)e.getSource();
+                	String id = b.getActionCommand();
+                	int index = -1;
+                	for (int n = 0; n < ingNames.size(); n++){
+                		if (ingNames.get(n).getActionCommand() == id){
+                			index = n;
+                			System.out.println("Delete index: " + n);
+                		}
+                	}
+                	// using the value of index, delete everything in that position
+                	ingPanel.remove(index);
+                	ingNames.remove(index);
+                	ingQuantity.remove(index);
+                	ingMeasurement.remove(index);
+                	
+                	//update the display of the Recipe Frame
+                	ingredientPanel.removeAll();
+    				ingredientPanel.setLayout(new BoxLayout(ingredientPanel,BoxLayout.Y_AXIS));
+    				for (JPanel jp : ingPanel){
+    					ingredientPanel.add(jp);
+    			        ingredientPanel.add(Box.createRigidArea(new Dimension(30,0)));
+    				}
+    				paintComponents(getGraphics());
+                	
                     //remove an ingredient from the ingredient panel
-                    ingNames.remove(ingNameComboBox);
+                    //ingNames.remove(ingNameComboBox);
                     //ingNames.add(ingNameField);
-                    ingQuantity.remove(qtyField);
+                    //ingQuantity.remove(qtyField);
                     //this just stores one measurement box. We need to get the item at the time of selection
                     //ingMeasurement.remove(measurementBox);
-                    ingPanel.remove(panel);
+                    //ingPanel.remove(panel);
                     
                     //create new panel w/out the removed components
                     /*createIngredientPanel();
