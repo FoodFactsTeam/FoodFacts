@@ -3,6 +3,7 @@ package foodFactsPackage;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 
 public class Main 
@@ -21,14 +22,21 @@ public class Main
     }
 
 		private static void initializeLibraryFromFile() {
-			try {
+			File dir = new File(".");
+			File[] files = dir.listFiles();
+			boolean ingExists = false;
+			boolean recExists = false;
+			for (File f : files){
+				if (f.getName() == "IngredientStore.ser") ingExists = true;
+				else if (f.getName() == "RecipeStore.ser") recExists = true;
+			}
+			if (ingExists){
 				ArrayList<Object> tempList1 = FileHandler.readObjectFromFile("IngredientStore.ser");
 				for (Object o : tempList1) Library.ingredientStore.add((Ingredient)o);
+			}
+			if (recExists){
 				ArrayList<Object> tempList2 = FileHandler.readObjectFromFile("RecipeStore.ser");
 				for (Object o : tempList2) Library.recLib.add((Recipe)o);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				//e.printStackTrace();
 			}
 		}
 }
