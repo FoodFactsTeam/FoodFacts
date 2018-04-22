@@ -193,7 +193,9 @@ public class RecipeFrame extends JFrame{
 				//paintAll(getGrapics());
 			}
 		});
-                
+                /**
+                 * This Button will save a recipe by adding it to recpLib
+                 */
                 saveBtn.addActionListener(new ActionListener(){
                     public void actionPerformed(ActionEvent e) 
                     {                       
@@ -268,6 +270,33 @@ public class RecipeFrame extends JFrame{
         JComboBox<Measure> measurementBox = new JComboBox<Measure>(model);
         
         JButton deleteBtn = new JButton("Delete");
+        deleteBtn.addActionListener(new ActionListener() 
+            {
+                public void actionPerformed(ActionEvent e) 
+                {
+                    //remove an ingredient from the ingredient panel
+                    ingNames.remove(ingNameComboBox);
+                    //ingNames.add(ingNameField);
+                    ingQuantity.remove(qtyField);
+                    //this just stores one measurement box. We need to get the item at the time of selection
+                    //ingMeasurement.remove(measurementBox);
+                    ingPanel.remove(panel);
+                    
+                    //create new panel w/out the removed components
+                    /*createIngredientPanel();
+			//repaint doesn't cause it to update view 
+			ingredientPanel.removeAll();
+			ingredientPanel.setLayout(new BoxLayout(ingredientPanel,BoxLayout.Y_AXIS));
+			for (JPanel jp : ingPanel)
+                        {
+				ingredientPanel.add(jp);
+			        ingredientPanel.add(Box.createRigidArea(new Dimension(30,0)));
+			}
+				
+		paintComponents(getGraphics());*/
+                    
+                }            
+            });
         
         //add components to JPanel
         panel.add(ingNameLabel);
