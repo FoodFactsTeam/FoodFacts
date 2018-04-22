@@ -113,7 +113,7 @@ public class FoodFactsGUI {
                 RecipeFrame rf = new RecipeFrame();
 		rf.setVisible(true);
 		rf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		rf.setSize(1000,600);
+		rf.setSize(1000,750);
 		rf.setResizable(true);
 			} else if (command.equals("open")) {
 				openingFrame.setVisible(false);
