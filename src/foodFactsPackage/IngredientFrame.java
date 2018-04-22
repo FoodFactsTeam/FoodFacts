@@ -143,8 +143,8 @@ public class IngredientFrame {
         addBtn.addActionListener(new IngredientListener());
         removeBtn.addActionListener(new IngredientListener());
 
-        homeIcon = new ImageIcon("homeIcon.png", "Go to home page");
-        homeBtn = new JButton(homeIcon);
+//        homeIcon = new ImageIcon("homeIcon.png", "Go to home page");
+        homeBtn = new JButton("HOME");
         homeBtn.setActionCommand("goHome");
         homeBtn.setOpaque(true);
         homeBtn.setPreferredSize(new Dimension(40, 40));
