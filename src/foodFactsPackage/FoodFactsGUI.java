@@ -5,10 +5,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.*;
+
+import sun.awt.WindowClosingListener;
 
 public class FoodFactsGUI {
 	//member variables for opening frame
@@ -96,8 +100,22 @@ public class FoodFactsGUI {
 		
 		openingFrame.setSize(frameSize[0], frameSize[1]);
 		openingFrame.setVisible(true);
-                    //instead of default exit on close, set serialize ingredients and recipes when closing
-		openingFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //instead of default exit on close, set serialize ingredients and recipes when closing
+		class CustomCloseAction extends WindowAdapter{
+			public void windowClosing(WindowEvent evt) {
+				FileHandler.writeObjectToFile("IngredientStore.ser", Library.ingredientStore);
+				FileHandler.writeObjectToFile("RecipeStore.ser", Library.recLib);
+				System.exit(0);
+			}
+		}
+		openingFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		openingFrame.addWindowListener(new CustomCloseAction());
+//		openingFrame.addWindowListener(new WindowAdapter() {
+//			public void windowClosing(WindowEvent evt) {
+//				
+//			}
+//			
+//		});
 	}
 
         //I'm not sure what this for. I couldn't find it anywhere, but I used the
@@ -112,7 +130,7 @@ public class FoodFactsGUI {
 				//ingredientFrame.setVisible(true);
                 RecipeFrame rf = new RecipeFrame();
 		rf.setVisible(true);
-		rf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		rf.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		rf.setSize(1000,750);
 		rf.setResizable(true);
 			} else if (command.equals("open")) {

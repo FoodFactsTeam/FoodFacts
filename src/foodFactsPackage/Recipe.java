@@ -5,14 +5,19 @@
 package foodFactsPackage;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /** *
  * @author deliapathak
  */
-public class Recipe 
+public class Recipe implements Serializable
 {
-    String title;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1;
+	String title;
     String[] fullElements;
     ArrayList <Ingredient> ingredients = new ArrayList<>();
     ArrayList <Double> quantities = new ArrayList<>();

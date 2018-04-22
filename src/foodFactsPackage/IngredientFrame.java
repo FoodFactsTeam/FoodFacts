@@ -178,7 +178,7 @@ public class IngredientFrame {
         frame.add(headerPanel);
         frame.add(mainPanel);
         frame.setSize(1400, 800);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setVisible(true);
 
         // = new Recipe();

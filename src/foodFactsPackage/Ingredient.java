@@ -5,15 +5,20 @@
  */
 package foodFactsPackage;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * The ingredient class
  * @author deliapathak
  */
-public class Ingredient 
+public class Ingredient implements Serializable
 {
-    String name;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1;
+	String name;
     /**
      * this is the Measure used to calculate nutrition information
      */
