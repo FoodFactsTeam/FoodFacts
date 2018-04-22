@@ -218,12 +218,11 @@ public class IngredientFrame {
         }
     }
 
-            public static void main(String[] args) 
+    public static void main(String[] args)
     {
         FoodFactsGUI openingFrame = new FoodFactsGUI();
         openingFrame.createOpeningFrame();
         openingFrame.createIngredientFrame();
-        
     }
 	
 }

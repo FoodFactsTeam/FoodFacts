@@ -165,7 +165,7 @@ public class RecipeFrame extends JFrame{
                 {
                     public void actionPerformed(ActionEvent e) 
                     {                       
-                       recipeDisplayGUI displayRecp = new recipeDisplayGUI();
+                       RecipeDisplayGUI displayRecp = new RecipeDisplayGUI();
                     }            
                 });
 		btnPanel2.add(Box.createRigidArea(new Dimension(300,0)));
