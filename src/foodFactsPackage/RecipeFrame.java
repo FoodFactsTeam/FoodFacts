@@ -178,7 +178,7 @@ public class RecipeFrame extends JFrame{
 		// create listener for Add IngredientButton
 		addIngredientBtn.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){                            
-                                ingMeasurement = new ArrayList<>();
+                                //ingMeasurement = new ArrayList<>();
                                 
                                 createIngredientPanel();
 				//repaint doesn't cause it to update view 
@@ -200,23 +200,23 @@ public class RecipeFrame extends JFrame{
                         Recipe firstR = new Recipe();
                         String recpName = recipeNameField.getText(); 
                         firstR.setTitle(recpName);
-                        //for each ingredient in      
+                        //these arrays hold the entire recipe's lists of specified info      
                             Ingredient[] recpIng = new Ingredient[ingNames.size()];
                             Double [] recpQuants = new Double[ingQuantity.size()];
                             String[] recpUnits = new String[ingMeasurement.size()];
-
+                            //this loop gets an array of Ingredient objects.
+                                //it takes the names and unit and compares this with the object to String.
                             for (int i = 0; i<ingNames.size(); i++)
                             {   
                                 Object purple;
-                                purple = ingNames.get(i).getSelectedItem();
-                                
+                                purple = ingNames.get(i).getSelectedItem();                                
                                 for(Ingredient ing: Library.ingredientStore)
                                 {
                                     if (ing.toString().equals(purple.toString()))
                                       recpIng[i]=ing;
                                 }
                             } 
-
+                            // This for loop gets the quantity called for in the recipe
                            for (int i=0; i<ingQuantity.size(); i++)
                             {                                 
                                 JTextField rq;
@@ -224,11 +224,11 @@ public class RecipeFrame extends JFrame{
                                 double pink = 0;
                                     rq = ingQuantity.get(i);
                                     rqtx = rq.getText();
-                                    System.out.println(rqtx);
+                                    //System.out.println(rqtx);
                                     pink = Double.parseDouble(rqtx);
                                 recpQuants[i] = pink;    
                             }
-                           
+                           //this loop gets the units used in the recipe it pulls if from a Measure object
                            for (int i = 0; i<ingMeasurement.size(); i++)
                            { 
                                Object pri = ingMeasurement.get(i).getSelectedItem();
@@ -236,9 +236,9 @@ public class RecipeFrame extends JFrame{
                                recpUnits[i] = pri.toString();
                            }
                            for (int j = 0; j<ingNames.size(); j++)
-                           {
+                           { //adds the "ingredient" to the recipe complete with Ingredient, quant and unit
                             firstR.addIngredient(recpIng[j],recpQuants[j],recpUnits[j]);
-                           }
+                           } //we add the recipe to the library class
                                 Library.recLib.add(firstR);                       
                     }            
                 });           
@@ -266,6 +266,7 @@ public class RecipeFrame extends JFrame{
 		JTextField qtyField = new JTextField(5);
 		DefaultComboBoxModel<Measure> model = new DefaultComboBoxModel<>(Measure.values());
         JComboBox<Measure> measurementBox = new JComboBox<Measure>(model);
+        
         JButton deleteBtn = new JButton("Delete");
         
         //add components to JPanel
@@ -285,6 +286,7 @@ public class RecipeFrame extends JFrame{
         ingNames.add(ingNameComboBox);
         //ingNames.add(ingNameField);
         ingQuantity.add(qtyField);
+        //this just stores one measurement box. We need to get the item at the time of selection
         ingMeasurement.add(measurementBox);
         ingPanel.add(panel);
         
