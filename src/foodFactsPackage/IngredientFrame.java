@@ -30,13 +30,20 @@ public class IngredientFrame {
 	IngredientFrame(){
         //create list to hold existing ingredients
         model = new DefaultListModel<String>();
-	list = new JList<String>(model);
-	list.setVisibleRowCount(10);
+        System.out.println(Library.ingredientStore.size());
+        for (int i = 0; i < Library.ingredientStore.size(); i++){
+        	System.out.println(Library.ingredientStore.get(i).toString());
+        }
+        for (Ingredient i : Library.ingredientStore){
+        	model.addElement(i.toString());
+        }
+        list = new JList<String>(model);
+        list.setVisibleRowCount(10);
         list.setFixedCellHeight(20);
-	list.setFixedCellWidth(140);
-	list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        list.setFixedCellWidth(140);
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-    ImageIcon homeIcon;
+        ImageIcon homeIcon;
 
 
         scrollPane = new JScrollPane(list);
@@ -204,8 +211,17 @@ public class IngredientFrame {
                 double fiber = Double.parseDouble(fiberField.getText());
                 double protein = Double.parseDouble(proteinField.getText());
                 ing = new Ingredient(name, bsMsr, calorie, fat, carbs, fiber, protein);
-                Library.ingredientStore.add(ing);                
+                Library.ingredientStore.add(ing); 
                 String ingDis = ing.toString();
+                
+                //clear fields after saving an ingredient
+                nameField.setText("");
+                measurementBox.setSelectedIndex(0);
+                caloriesField.setText("");
+                fatField.setText("");
+                carbohydratesField.setText("");
+                fiberField.setText("");
+                proteinField.setText("");
                 
                 model.addElement(ingDis); //JULIE, ADD BASE MEASURE
             } else if (command.equals("removeIngredient")) {
@@ -216,6 +232,7 @@ public class IngredientFrame {
                 frame.setVisible(false);
                 Library.getIngrtNames();
             }
+            
         }
     }
 

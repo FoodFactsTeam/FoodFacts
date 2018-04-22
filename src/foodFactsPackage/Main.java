@@ -22,21 +22,20 @@ public class Main
     }
 
 		private static void initializeLibraryFromFile() {
-			File dir = new File(".");
-			File[] files = dir.listFiles();
-			boolean ingExists = false;
-			boolean recExists = false;
-			for (File f : files){
-				if (f.getName() == "IngredientStore.ser") ingExists = true;
-				else if (f.getName() == "RecipeStore.ser") recExists = true;
-			}
-			if (ingExists){
+			try{
 				ArrayList<Object> tempList1 = FileHandler.readObjectFromFile("IngredientStore.ser");
 				for (Object o : tempList1) Library.ingredientStore.add((Ingredient)o);
+				System.out.println("Number of items in IngredientStore: " + Library.ingredientStore.size());
 			}
-			if (recExists){
+			catch (Exception e){
+				
+			}
+			try{
 				ArrayList<Object> tempList2 = FileHandler.readObjectFromFile("RecipeStore.ser");
 				for (Object o : tempList2) Library.recLib.add((Recipe)o);
+			}
+			catch (Exception e){
+				
 			}
 		}
 }

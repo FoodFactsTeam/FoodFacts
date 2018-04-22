@@ -108,7 +108,7 @@ public class RecipeFrame extends JFrame{
                 {
                     public void actionPerformed(ActionEvent e) 
                     {
-                        //this is supposed
+                        //create a new Ingredient Frame
                         IngredientFrame additional = new IngredientFrame();
                     }            
                 });

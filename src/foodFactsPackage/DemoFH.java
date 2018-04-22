@@ -37,5 +37,11 @@ public class DemoFH implements Serializable{
 		String text = String.format("line1 text %sline2 text %sline3 text %s",separator,separator,separator);
 		String filename = "StringTest.txt";
 		FileHandler.writeStringToFile(filename,text);
+		
+		ArrayList<Object> testIS = FileHandler.readObjectFromFile("IngredientStore.ser");
+		for (Object o : testIS){
+			Ingredient i = (Ingredient)o;
+			System.out.println(i.getName());
+		}
 	}
 }

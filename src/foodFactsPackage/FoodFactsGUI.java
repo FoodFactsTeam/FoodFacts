@@ -104,6 +104,7 @@ public class FoodFactsGUI {
 		class CustomCloseAction extends WindowAdapter{
 			public void windowClosing(WindowEvent evt) {
 				FileHandler.writeObjectToFile("IngredientStore.ser", Library.ingredientStore);
+				System.out.printf("%d Ingredients from store serialized.",Library.ingredientStore.size());
 				FileHandler.writeObjectToFile("RecipeStore.ser", Library.recLib);
 				System.exit(0);
 			}
