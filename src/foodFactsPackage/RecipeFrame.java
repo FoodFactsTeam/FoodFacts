@@ -258,7 +258,7 @@ public class RecipeFrame extends JFrame{
 		panel.setBackground(bgColor);
 		JLabel ingNameLabel = new JLabel("Name: ");
                 //I added Library.ingtNames to the parameters to try to fill this box
-		JComboBox<String> ingNameComboBox = new JComboBox<String>(Library.ingtNames);
+		JComboBox<String> ingNameComboBox = new JComboBox<>(Library.ingtNames);
 		ingNameComboBox.setPrototypeDisplayValue("ingredient approximately 30 characters "
                         + "long plus some space");
 		//JTextField ingNameField = new JTextField(30);

@@ -17,10 +17,10 @@ public class Library
         /**
          * an array list of Ingredients
          */
-        public static ArrayList <Ingredient> ingredientStore;
-        public static ArrayList <Recipe> recLib;
+        public static ArrayList <Ingredient> ingredientStore = new ArrayList<>();
+        public static ArrayList <Recipe> recLib = new ArrayList<>();
 
-        public static ArrayList<String> ingrtNames = new ArrayList<>(); 
+        public static ArrayList<String> ingrtNames ; 
         /**
          * String array of Ingredient names
          */
