@@ -166,7 +166,7 @@ public class RecipeFrame extends JFrame{
                 {
                     public void actionPerformed(ActionEvent e) 
                     {                       
-                       recipeDisplayGUI displayRecp = new recipeDisplayGUI();
+                       RecipeDisplayGUI displayRecp = new RecipeDisplayGUI();
                     }            
                 });
 		btnPanel2.add(Box.createRigidArea(new Dimension(300,0)));
@@ -359,4 +359,12 @@ public class RecipeFrame extends JFrame{
         ingredientPanel.add(panel);
         ingredientPanel.add(Box.createRigidArea(gap));       
 	}
+
+	public void launchRecipe() {
+        RecipeDisplayGUI RDG = new RecipeDisplayGUI();
+        RDG.setVisible(true);
+        RDG.setSize(1000, 600);
+        RDG.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        RDG.setResizable(true);
+    }
 }

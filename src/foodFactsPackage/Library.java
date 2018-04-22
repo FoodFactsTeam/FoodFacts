@@ -35,4 +35,14 @@ public class Library
             }
            
         }
+
+        public static Recipe getRecipeByName(String title) {
+            for (int i = 0; i < recLib.size(); i++) {
+                if (recLib.get(i).title.equals(title)) {
+                    return Library.recLib.get(i);
+                }
+            }
+            return null;
+        }
+
 }
