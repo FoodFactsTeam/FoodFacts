@@ -20,7 +20,7 @@ public class Library
         public static ArrayList <Ingredient> ingredientStore = new ArrayList<>();
         public static ArrayList <Recipe> recLib = new ArrayList<>();
 
-        public static ArrayList<String> ingrtNames; 
+        public static ArrayList<String> ingrtNames ; 
         /**
          * String array of Ingredient names
          */
