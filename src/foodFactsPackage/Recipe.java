@@ -163,8 +163,8 @@ public class Recipe implements Serializable
         
         return fullElements;
     }
-    
-    
+
+
     // here is that method. I'm not sure where I pushed.
     public String FullRecipe()
     {
@@ -172,22 +172,22 @@ public class Recipe implements Serializable
         sb.append(this.title);
         sb.append("\n");
         sb.append("Ingredients").append("\n");
-      for(int i = 0; i<this.ingredients.size(); i++)
-            {   
-                sb.append(quantities.get(i).toString()).append(" ");
+        for(int i = 0; i<this.ingredients.size(); i++)
+        {
+            sb.append(quantities.get(i).toString()).append(" ");
             if(units.get(i).equalsIgnoreCase("Unit")||units.get(i).equalsIgnoreCase("Lb"))
                 sb.append(units.get(i)).append("  ");
-                sb.append(ingredients.get(i).getName());
-                sb.append("\n");
-            }
-      
-      sb.append("Instructions").append("\n");
-      for (String e: this.instructions)
-      {
-          sb.append(e).append("\n");
-      }
-      String recp = (sb.toString());
-      return recp;
+            sb.append(ingredients.get(i).getName());
+            sb.append("\n");
+        }
+
+        sb.append("Instructions").append("\n");
+        for (int i = 0; i<this.instructions.size(); i++)
+        {
+            sb.append(instructions.get(i)).append("\n");
+        }
+        String recp = (sb.toString());
+        return recp;
     }
     
     

@@ -7,30 +7,44 @@ import java.awt.*;
 * Created by julie.kohler on 4/16/2018.
 */
 public class RecipeDisplayGUI extends JFrame {
-    JFrame recipeFrame = new JFrame();
-    JPanel recipePanel = new JPanel();
-    JPanel nutritionFactsPanel = new JPanel();
+    JFrame recipeFrame;
+    JPanel recipePanel;
+    JPanel nutritionFactsPanel;
+    JTextArea recipeArea;
+    JTextArea nutritionFactsArea;
 
-    RecipeDisplayGUI(String recipeTitle) {
-        setLayout(new FlowLayout());
+    public void initComponents(String recipeTitle) {
+        recipeFrame = new JFrame();
+
+        recipePanel = new JPanel();
+        recipePanel.setLayout(new FlowLayout());
+
+        nutritionFactsPanel = new JPanel();
+        nutritionFactsPanel.setLayout(new FlowLayout());
 
         Recipe displayedRecipe = Library.getRecipeByName(recipeTitle);
         String recipe = displayedRecipe.FullRecipe();
+        System.out.println("RECIPE " + recipe);
         String nutritionFacts = displayedRecipe.NutritionToString();
 
-        JTextArea recipeArea = new JTextArea(recipe);
-        JTextArea nutritionFactsArea = new JTextArea(nutritionFacts);
-
+        recipeArea = new JTextArea(recipe);
+        nutritionFactsArea = new JTextArea(nutritionFacts);
 
         recipeArea.setEditable(false);
         nutritionFactsArea.setEditable(false);
 
         recipePanel.add(recipeArea);
+
         nutritionFactsPanel.add(nutritionFactsArea);
 
-        recipePanel.setVisible(true);
-
+        nutritionFactsPanel.setBackground(new Color(210,180,140));
         recipeFrame.add(recipePanel);
         recipeFrame.add(nutritionFactsPanel);
+
+        recipeFrame.setVisible(true);
+    }
+
+    RecipeDisplayGUI(String recipeTitle) {
+        initComponents(recipeTitle);
     }
 };
