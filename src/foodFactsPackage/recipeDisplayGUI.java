@@ -1,50 +1,39 @@
 package foodFactsPackage;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
 * Created by julie.kohler on 4/16/2018.
 */
 public class RecipeDisplayGUI extends JFrame {
-    JFrame recipeFrame;
-    JPanel recipePanel;
-    JPanel nutritionFactsPanel;
-    JTextArea recipeArea;
-    JTextArea nutritionFactsArea;
+JFrame recipeFrame = new JFrame();
+JPanel recipePanel = new JPanel();
+JPanel nutritionFactsPanel = new JPanel();
 
-    public void initComponents(String recipeTitle) {
-        recipeFrame = new JFrame();
+Recipe displayedRecipe = new Recipe();
+String recipe = displayedRecipe.FullRecipe();
+String nutritionFacts = displayedRecipe.NutritionToString();
 
-        recipePanel = new JPanel();
-        recipePanel.setLayout(new FlowLayout());
+JTextArea recipeArea = new JTextArea(recipe);
+JTextArea nutritionFactsArea = new JTextArea(nutritionFacts);
 
-        nutritionFactsPanel = new JPanel();
-        nutritionFactsPanel.setLayout(new FlowLayout());
+public void createFrame() {
+recipeArea.setEditable(false);
+nutritionFactsArea.setEditable(false);
 
-        Recipe displayedRecipe = Library.getRecipeByName(recipeTitle);
-        String recipe = displayedRecipe.FullRecipe();
-        System.out.println("RECIPE " + recipe);
-        String nutritionFacts = displayedRecipe.NutritionToString();
-
-        recipeArea = new JTextArea(recipe);
-        nutritionFactsArea = new JTextArea(nutritionFacts);
-
-        recipeArea.setEditable(false);
-        nutritionFactsArea.setEditable(false);
-
-        recipePanel.add(recipeArea);
-
-        nutritionFactsPanel.add(nutritionFactsArea);
-
-        nutritionFactsPanel.setBackground(new Color(210,180,140));
-        recipeFrame.add(recipePanel);
-        recipeFrame.add(nutritionFactsPanel);
-
-        recipeFrame.setVisible(true);
+recipeFrame.add(recipePanel);
+recipeFrame.add(nutritionFactsPanel);
 }
 
-    RecipeDisplayGUI(String recipeTitle) {
-        initComponents(recipeTitle);
-    }
+RecipeDisplayGUI() {
+createFrame();
+}
+
+public static void main(String[] args) {
+RecipeDisplayGUI RDG = new RecipeDisplayGUI();
+RDG.setVisible(true);
+RDG.setSize(1000, 600);
+RDG.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+RDG.setResizable(true);
+}
 };

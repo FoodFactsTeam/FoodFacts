@@ -231,6 +231,7 @@ public class IngredientFrame {
             } else if (command.equals("goHome")) {
                 frame.setVisible(false);
                 Library.getIngrtNames();
+               
             }
             
         }
