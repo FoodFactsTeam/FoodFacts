@@ -182,7 +182,7 @@ public class Recipe implements Serializable
             }
       
       sb.append("Instructions").append("\n");
-      for (String e: this.instructions)
+      for (int i = 0; i<this.instructions.size(); i++)
       {
           sb.append(instructions.get(i)).append("\n");
       }
