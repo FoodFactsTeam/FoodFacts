@@ -164,23 +164,30 @@ public class Recipe implements Serializable
         return fullElements;
     }
     
-    /**
-     * an attempt to return all the array information in a string. Including all the new lines.
-     * This isn't working
-     * @return a string, this doesn't work yet.
-     */
+    
+    // here is that method. I'm not sure where I pushed.
     public String FullRecipe()
     {
-        this.RecipeInfo();
-        
-        StringBuilder fullRec = new StringBuilder();
-            for(String e: fullElements)
-            {
-                fullRec.append("%n");
-                fullRec.append(e);                
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.title);
+        sb.append("\n");
+        sb.append("Ingredients").append("\n");
+      for(int i = 0; i<this.ingredients.size(); i++)
+            {   
+                sb.append(quantities.get(i).toString()).append(" ");
+            if(units.get(i).equalsIgnoreCase("Unit")||units.get(i).equalsIgnoreCase("Lb"))
+                sb.append(units.get(i)).append("  ");
+                sb.append(ingredients.get(i).getName());
+                sb.append("\n");
             }
-       
-       return fullRec.toString();
+      
+      sb.append("Instructions").append("\n");
+      for (String e: this.instructions)
+      {
+          sb.append(e).append("\n");
+      }
+      String recp = (sb.toString());
+      return recp;
     }
     
     
