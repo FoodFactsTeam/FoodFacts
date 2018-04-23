@@ -23,7 +23,9 @@ public class Recipe implements Serializable
     ArrayList <Double> quantities = new ArrayList<>();
     ArrayList <String> units = new ArrayList<>();
     ArrayList <String> instructions = new ArrayList<>();
-    double totalFiber,servings;
+    String stringInstructions;
+    double totalFiber;
+    double servings;
     double totalFat;
     double totalCarbs;
     double totalProtein;
@@ -90,7 +92,7 @@ public class Recipe implements Serializable
     
     public void calcNutrition()
     {
-        //Iterate through the Recipe's Ingredient List 
+        //Iterate through the Recipe's Ingredient List
         for(int i = 0; i < ingredients.size()&& i<quantities.size()&& i<units.size(); i++)
         {
             double ratio=1;
@@ -124,10 +126,10 @@ public class Recipe implements Serializable
      */
     public String NutritionToString()
     {
-           return String.format("Nutrition Information based on %f servings%nCalories:  %.2f%nFat:  "
+        calcNutrition();
+        return String.format("Nutrition Information based on %.0f servings%nCalories:  %.2f%nFat:  "
                    + "%.2f%nFiber:    %.2f%nCarbohydrates:    %.2f"
-                   + "%nProtein %.2f",this.servings,this.totalCalories,this.totalFat,this.totalFiber,this.totalCarbs,
-                   this.totalProtein);      
+                   + "%nProtein %.2f",this.servings,this.totalCalories,this.totalFat,this.totalFiber,this.totalCarbs, this.totalProtein);
     }
     
     /**
@@ -170,7 +172,7 @@ public class Recipe implements Serializable
     {
         StringBuilder sb = new StringBuilder();
         sb.append(this.title);
-        sb.append("\n");
+        sb.append("\n\n");
         sb.append("Ingredients").append("\n");
         for(int i = 0; i<this.ingredients.size(); i++)
         {
@@ -178,14 +180,14 @@ public class Recipe implements Serializable
             if(units.get(i).equalsIgnoreCase("Unit")||units.get(i).equalsIgnoreCase("Lb"))
                 sb.append(units.get(i)).append("  ");
                 sb.append(ingredients.get(i).getName());
-                sb.append("\n");
+                sb.append("\n\n");
             }
 
-      sb.append("Instructions").append("\n");
-      for (int i = 0; i<this.instructions.size(); i++)
-      {
-          sb.append(instructions.get(i)).append("\n");
-      }
+      sb.append("Instructions").append("\n").append(stringInstructions);
+//      for (int i = 0; i<this.instructions.size(); i++)
+//      {
+//          sb.append(instructions.get(i)).append("\n");
+//      }
       String recp = (sb.toString());
       return recp;
     }
