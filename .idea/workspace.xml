@@ -51,8 +51,8 @@
           <file leaf-file-name="RecipeDisplayGUI.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/foodFactsPackage/RecipeDisplayGUI.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="567">
-                  <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+                <state relative-caret-position="585">
+                  <caret line="46" column="42" lean-forward="true" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -67,8 +67,8 @@
           <file leaf-file-name="Recipe.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/foodFactsPackage/Recipe.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="513">
-                  <caret line="187" column="9" lean-forward="true" selection-start-line="187" selection-start-column="9" selection-end-line="187" selection-end-column="9" />
+                <state relative-caret-position="279">
+                  <caret line="175" column="9" lean-forward="true" selection-start-line="175" selection-start-column="9" selection-end-line="175" selection-end-column="9" />
                   <folding />
                 </state>
               </provider>
@@ -80,7 +80,12 @@
                 <state relative-caret-position="357">
                   <caret line="153" column="33" lean-forward="false" selection-start-line="153" selection-start-column="33" selection-end-line="153" selection-end-column="33" />
                   <folding>
-                    <element signature="e#12544#12553#0" expanded="true" />
+                    <marker date="1524461294987" expanded="true" signature="12598:17167" ph="{...}" />
+                    <marker date="1524461294987" expanded="true" signature="13357:13366" ph="&lt;~&gt;" />
+                    <marker date="1524461294987" expanded="true" signature="13443:13656" ph="//..." />
+                    <marker date="1524461294987" expanded="true" signature="13973:16200" ph="{...}" />
+                    <marker date="1524461294987" expanded="true" signature="14051:16174" ph="{...}" />
+                    <marker date="1524461294987" expanded="true" signature="15215:15726" ph="//..." />
                   </folding>
                 </state>
               </provider>
@@ -161,8 +166,8 @@
         <option value="$PROJECT_DIR$/src/foodFactsPackage/Main.java" />
         <option value="$PROJECT_DIR$/src/foodFactsPackage/FoodFactsGUI.java" />
         <option value="$PROJECT_DIR$/src/foodFactsPackage/RecipeFrame.java" />
-        <option value="$PROJECT_DIR$/src/foodFactsPackage/Recipe.java" />
         <option value="$PROJECT_DIR$/src/foodFactsPackage/RecipeDisplayGUI.java" />
+        <option value="$PROJECT_DIR$/src/foodFactsPackage/Recipe.java" />
       </list>
     </option>
   </component>
@@ -725,7 +730,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42405000" />
+    <option name="totallyTimeSpent" value="42743000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="2391" y="-9" width="2418" height="1468" extended-state="6" />
@@ -1169,7 +1174,12 @@
         <state relative-caret-position="357">
           <caret line="153" column="33" lean-forward="false" selection-start-line="153" selection-start-column="33" selection-end-line="153" selection-end-column="33" />
           <folding>
-            <element signature="e#12544#12553#0" expanded="true" />
+            <marker date="1524461294987" expanded="true" signature="12598:17167" ph="{...}" />
+            <marker date="1524461294987" expanded="true" signature="13357:13366" ph="&lt;~&gt;" />
+            <marker date="1524461294987" expanded="true" signature="13443:13656" ph="//..." />
+            <marker date="1524461294987" expanded="true" signature="13973:16200" ph="{...}" />
+            <marker date="1524461294987" expanded="true" signature="14051:16174" ph="{...}" />
+            <marker date="1524461294987" expanded="true" signature="15215:15726" ph="//..." />
           </folding>
         </state>
       </provider>
@@ -1184,8 +1194,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/foodFactsPackage/RecipeDisplayGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+        <state relative-caret-position="585">
+          <caret line="46" column="42" lean-forward="true" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1194,8 +1204,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/foodFactsPackage/Recipe.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="187" column="9" lean-forward="true" selection-start-line="187" selection-start-column="9" selection-end-line="187" selection-end-column="9" />
+        <state relative-caret-position="279">
+          <caret line="175" column="9" lean-forward="true" selection-start-line="175" selection-start-column="9" selection-end-line="175" selection-end-column="9" />
           <folding />
         </state>
       </provider>

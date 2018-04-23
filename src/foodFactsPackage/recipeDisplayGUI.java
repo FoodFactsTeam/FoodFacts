@@ -42,7 +42,7 @@ public class RecipeDisplayGUI extends JFrame {
         recipeFrame.add(nutritionFactsPanel);
 
         recipeFrame.setVisible(true);
-    }
+}
 
     RecipeDisplayGUI(String recipeTitle) {
         initComponents(recipeTitle);

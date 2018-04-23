@@ -28,10 +28,11 @@ public class Library
         
         public static void getIngrtNames ()
         {
-           ingtNames = new String[ingredientStore.size()];
+           ingtNames = new String[ingredientStore.size()+1];
+           ingtNames[0] = "Please Add Ingredient";
            for (int i=0; i<ingredientStore.size(); i++)
             {
-                ingtNames[i] = ingredientStore.get(i).toString();
+                ingtNames[i+1] = ingredientStore.get(i).toString();
             }
            
         }

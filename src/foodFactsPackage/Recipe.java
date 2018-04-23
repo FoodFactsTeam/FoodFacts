@@ -177,17 +177,17 @@ public class Recipe implements Serializable
             sb.append(quantities.get(i).toString()).append(" ");
             if(units.get(i).equalsIgnoreCase("Unit")||units.get(i).equalsIgnoreCase("Lb"))
                 sb.append(units.get(i)).append("  ");
-            sb.append(ingredients.get(i).getName());
-            sb.append("\n");
-        }
+                sb.append(ingredients.get(i).getName());
+                sb.append("\n");
+            }
 
-        sb.append("Instructions").append("\n");
-        for (int i = 0; i<this.instructions.size(); i++)
-        {
-            sb.append(instructions.get(i)).append("\n");
-        }
-        String recp = (sb.toString());
-        return recp;
+      sb.append("Instructions").append("\n");
+      for (int i = 0; i<this.instructions.size(); i++)
+      {
+          sb.append(instructions.get(i)).append("\n");
+      }
+      String recp = (sb.toString());
+      return recp;
     }
     
     

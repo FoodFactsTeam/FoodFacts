@@ -250,6 +250,34 @@ public class RecipeFrame extends JFrame{
 		setSize(1000,900);
 		setResizable(false);
 	
+		//when leaving ingredient frame, this method is called to update values populating components
+		class WindowFocusHandler extends WindowAdapter{
+			@Override
+			public void windowActivated(WindowEvent e){
+				//update list to add add to JComboBox's
+				Library.getIngrtNames();
+				String[] newList = Library.ingtNames;
+				//for each ingComboBox in recipe ingredient list
+				for (JComboBox<String> jcb : ingNames){
+					String currentlySelectedText = (String)jcb.getSelectedItem();
+					jcb.removeAllItems();
+					for (int i = 0; i < newList.length; i++){
+						jcb.addItem(newList[i]);
+						if (currentlySelectedText == newList[i]){
+							jcb.setSelectedIndex(i);
+						}
+					}
+					
+					
+				}
+				//update list of ingredient names
+				
+				
+			}
+		}
+		addWindowListener(new WindowFocusHandler());
+		
+	}
 	}
 	
 	public void createIngredientPanel(){
