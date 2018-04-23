@@ -90,6 +90,7 @@ public class FileHandler {
 	 * String separator = System.getProperty("line.separator"); 
 	 */
 	public static void writeStringToFile(String filename, String text){
+		System.out.println(filename + "\n\n" + text);
 		try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename))){
 			bw.write(text);
 		}

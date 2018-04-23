@@ -15,7 +15,7 @@ public class IngredientFrame {
 	DefaultListModel<String> model;
 	JList<String> list;
 	JScrollPane scrollPane;
-	JButton addBtn,removeBtn,homeBtn;
+	JButton addBtn,removeBtn,backBtn;
 	JLabel nameLabel,measurementLabel,caloriesLabel,fatLabel,carbohydratesLabel,fiberLabel,proteinLabel;
 	JTextField nameField,caloriesField,fatField,carbohydratesField,fiberField,proteinField;
 	Font labelFont,fieldFont;
@@ -43,7 +43,7 @@ public class IngredientFrame {
         list.setFixedCellWidth(140);
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        ImageIcon homeIcon;
+        ImageIcon backIcon;
 
 
         scrollPane = new JScrollPane(list);
@@ -151,25 +151,25 @@ public class IngredientFrame {
         addBtn.addActionListener(new IngredientListener());
         removeBtn.addActionListener(new IngredientListener());
 
-        homeIcon = new ImageIcon("homeIcon.png", "Go to home page");
-        homeBtn = new JButton(homeIcon);
-        homeBtn.setActionCommand("goHome");
-        homeBtn.setOpaque(true);
-        homeBtn.setPreferredSize(new Dimension(40, 40));
-        homeBtn.addActionListener(new IngredientListener());
+        backIcon = new ImageIcon("backIcon.png", "Go back");
+        backBtn = new JButton(backIcon);
+        backBtn.setActionCommand("goHome");
+        backBtn.setOpaque(true);
+        backBtn.setPreferredSize(new Dimension(40, 40));
+        backBtn.addActionListener(new IngredientListener());
 
         headerPanel = new JPanel();
         headerPanel.setOpaque(true);
         headerPanel.setBackground(new Color(30,144,255));
         headerPanel.setLayout(new GridLayout(4,1));
-        //headerPanel.add(homeBtn);
+        //headerPanel.add(backBtn);
 
 
         //add components to JPanel
         mainPanel = new JPanel();
         mainPanel.setOpaque(true);
         mainPanel.setBackground(new Color(210,180,140));
-        mainPanel.add(homeBtn);
+        mainPanel.add(backBtn);
         mainPanel.add(headerPanel);
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.LINE_AXIS));
         mainPanel.add(Box.createRigidArea(new Dimension(100,0)));
