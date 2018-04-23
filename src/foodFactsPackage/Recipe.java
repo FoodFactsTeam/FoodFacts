@@ -135,7 +135,7 @@ public class Recipe implements Serializable
      * @return String array 
      */
     public String[] RecipeInfo()
-    {   
+    {
         String fullElement;
         fullElements = new String[ingredients.size()+1];
         //print a header

@@ -1,17 +1,13 @@
 package foodFactsPackage;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagLayout;
-import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Insets;
-import javax.swing.SwingConstants;
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Dimension;
@@ -21,29 +17,12 @@ import javax.swing.border.BevelBorder;
 //import foodFactsPackage.ListDemo.FireListener;
 //import foodFactsPackage.ListDemo.HireListener;
 
-import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.JList;
-import javax.swing.AbstractListModel;
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
-import javax.swing.ListSelectionModel;
 import java.awt.GridLayout;
-import javax.swing.JComboBox;
-import javax.swing.JMenu;
-import javax.swing.JPopupMenu;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Random;
-
-import javax.swing.JMenuItem;
 
 public class RecipeFrame extends JFrame{
 	JPanel mainPanel,ingredientPanel;
@@ -88,6 +67,18 @@ public class RecipeFrame extends JFrame{
                     JTextField servingField = new JTextField(5);
                         panel1.add(servingField);
                         panel1.add(Box.createRigidArea(new Dimension(300,0)));
+        ImageIcon homeIcon = new ImageIcon("homeIcon.png", "Go to home page");
+        JButton homeBtn = new JButton(homeIcon);
+            homeBtn.setActionCommand("goHome");
+            homeBtn.setOpaque(true);
+            homeBtn.setPreferredSize(new Dimension(40, 40));
+            homeBtn.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent e)
+                {
+                    mainPanel.getParent().getParent().getParent().getParent().setVisible(false);
+                }
+            });
+            panel1.add(homeBtn);
 		mainPanel.add(panel1);
 		mainPanel.add(Box.createRigidArea(new Dimension(0,100)));
 		
@@ -165,11 +156,16 @@ public class RecipeFrame extends JFrame{
                 createBtn.addActionListener(new ActionListener() 
                 {
                     public void actionPerformed(ActionEvent e) 
-                    {                       
+                    {
 
-                       RecipeDisplayGUI displayRecp = new RecipeDisplayGUI();
-
-                    }            
+                        System.out.println(recipeNameField.getText() );
+                        System.out.println(Library.recLib);
+                        RecipeDisplayGUI displayRecp = new RecipeDisplayGUI(recipeNameField.getText());
+                        displayRecp.setVisible(true);
+                        displayRecp.setSize(1000, 900);
+                        displayRecp.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+                        displayRecp.setResizable(true);
+                    }
                 });
 		btnPanel2.add(Box.createRigidArea(new Dimension(300,0)));
 		mainPanel.add(Box.createRigidArea(new Dimension(0,50)));
@@ -246,7 +242,7 @@ public class RecipeFrame extends JFrame{
                            } //we add the recipe to the library class
                                 Library.recLib.add(firstR);                       
                     }            
-                });           
+                });
 		
         //set properties of JFrame
 		setVisible(true);
@@ -359,14 +355,6 @@ public class RecipeFrame extends JFrame{
         
         //add panel to mainPanel
         ingredientPanel.add(panel);
-        ingredientPanel.add(Box.createRigidArea(gap));       
+        ingredientPanel.add(Box.createRigidArea(gap));
 	}
-
-	public void launchRecipe() {
-        RecipeDisplayGUI RDG = new RecipeDisplayGUI();
-        RDG.setVisible(true);
-        RDG.setSize(1000, 600);
-        RDG.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        RDG.setResizable(true);
-    }
 }

@@ -1,39 +1,36 @@
 package foodFactsPackage;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
 * Created by julie.kohler on 4/16/2018.
 */
 public class RecipeDisplayGUI extends JFrame {
-JFrame recipeFrame = new JFrame();
-JPanel recipePanel = new JPanel();
-JPanel nutritionFactsPanel = new JPanel();
+    JFrame recipeFrame = new JFrame();
+    JPanel recipePanel = new JPanel();
+    JPanel nutritionFactsPanel = new JPanel();
 
-Recipe displayedRecipe = new Recipe();
-String recipe = displayedRecipe.FullRecipe();
-String nutritionFacts = displayedRecipe.NutritionToString();
+    RecipeDisplayGUI(String recipeTitle) {
+        setLayout(new FlowLayout());
 
-JTextArea recipeArea = new JTextArea(recipe);
-JTextArea nutritionFactsArea = new JTextArea(nutritionFacts);
+        Recipe displayedRecipe = Library.getRecipeByName(recipeTitle);
+        String recipe = displayedRecipe.FullRecipe();
+        String nutritionFacts = displayedRecipe.NutritionToString();
 
-public void createFrame() {
-recipeArea.setEditable(false);
-nutritionFactsArea.setEditable(false);
+        JTextArea recipeArea = new JTextArea(recipe);
+        JTextArea nutritionFactsArea = new JTextArea(nutritionFacts);
 
-recipeFrame.add(recipePanel);
-recipeFrame.add(nutritionFactsPanel);
-}
 
-RecipeDisplayGUI() {
-createFrame();
-}
+        recipeArea.setEditable(false);
+        nutritionFactsArea.setEditable(false);
 
-public static void main(String[] args) {
-RecipeDisplayGUI RDG = new RecipeDisplayGUI();
-RDG.setVisible(true);
-RDG.setSize(1000, 600);
-RDG.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-RDG.setResizable(true);
-}
+        recipePanel.add(recipeArea);
+        nutritionFactsPanel.add(nutritionFactsArea);
+
+        recipePanel.setVisible(true);
+
+        recipeFrame.add(recipePanel);
+        recipeFrame.add(nutritionFactsPanel);
+    }
 };

@@ -73,7 +73,7 @@ public class FoodFactsGUI {
 		subTitle.setFont(subTitleFont);
 		subTitle.setBounds((frameSize[0]-subTitleLabelSize[0])/2, (frameSize[1]-subTitleLabelSize[1])/2, subTitleLabelSize[0], subTitleLabelSize[1]);
 		
-		addRecipe = new JButton("ADD RECIPE");
+		addRecipe = new JButton("Add a Recipe");
 		addRecipe.setFont(new Font("Perpetua", Font.BOLD, 20));
 		addRecipe.setHorizontalAlignment(JLabel.CENTER);
 		addRecipe.setVerticalAlignment(JLabel.CENTER);
@@ -82,7 +82,7 @@ public class FoodFactsGUI {
 		addRecipe.setActionCommand("add");
 		addRecipe.addActionListener(new ButtonClickListener());
 		
-		openRecipeBook = new JButton("OPEN RECIPE COLLECTION");
+		openRecipeBook = new JButton("Open Recipe Collection");
 		openRecipeBook.setFont(new Font("Perpetua", Font.BOLD, 20));
 		openRecipeBook.setHorizontalAlignment(JLabel.CENTER);
 		openRecipeBook.setVerticalAlignment(JLabel.CENTER);
