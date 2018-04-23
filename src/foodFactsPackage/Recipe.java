@@ -184,7 +184,7 @@ public class Recipe implements Serializable
       sb.append("Instructions").append("\n");
       for (String e: this.instructions)
       {
-          sb.append(e).append("\n");
+          sb.append(instructions.get(i)).append("\n");
       }
       String recp = (sb.toString());
       return recp;
