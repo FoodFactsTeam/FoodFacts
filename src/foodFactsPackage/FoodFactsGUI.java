@@ -28,7 +28,9 @@ public class FoodFactsGUI {
 	//member variables for Ingredients Frame
 	JFrame ingredientFrame;
 	JPanel ingredientPanel;
-	
+
+	RecipeCollection recipeCollection;
+
 	FoodFactsGUI(){
 		createOpeningFrame();
 		createIngredientFrame();
@@ -45,6 +47,10 @@ public class FoodFactsGUI {
 
 		ingredientFrame.setVisible(false);
 		ingredientFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	public void createRecipeCollectionFrame(){
+		recipeCollection = new RecipeCollection();
 	}
 	
 	public void createOpeningFrame(){
@@ -136,7 +142,7 @@ public class FoodFactsGUI {
 		rf.setResizable(true);
 			} else if (command.equals("open")) {
 				openingFrame.setVisible(false);
-				ingredientFrame.setVisible(true);
+				createRecipeCollectionFrame();
 			}
 		}
 	}
